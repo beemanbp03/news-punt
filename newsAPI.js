@@ -92,11 +92,12 @@ const buildResultsSection = () => {
             itemObject = articleObject[0][item];
             //console.log(itemObject);
 
-            //Create .news-card Div
+            //Create .news-card a element
             newsCard = document.createElement('a');
             newsCard.classList.add('news-card');
             newsCard.setAttribute('style', "text-decoration:none;color:inherit;");
             newsCard.setAttribute('href', itemObject.url);
+            newsCard.setAttribute('target', '_blank');
             
             //Create H2 element
             title = document.createElement('h2');
