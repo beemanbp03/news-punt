@@ -187,6 +187,12 @@ nextTeam.addEventListener('click', () => {
     wheelDiv.scrollLeft += slideAmount;
 });
 
+nextTeam.addEventListener('wheel', (event) => {
+    const slideAmount = teams.clientWidth * 3;
+    wheelDiv.scrollLeft += slideAmount;
+});
+
+
 prevTeam.addEventListener('click', () => {
     const slideAmount = teams.clientWidth * 3;
     wheelDiv.scrollLeft -= slideAmount;

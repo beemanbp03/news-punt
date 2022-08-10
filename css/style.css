@@ -27,8 +27,8 @@ body {
     padding: 5px;
     overflow: hidden;
     scroll-behavior: smooth;
-    box-shadow: inset 0px 0px 5px lightgrey;
-    box-shadow: outset 0px 0px 10px lightgrey;
+    box-shadow: inset -5px 0px 10px 4px lightgrey;
+    box-shadow: outset 0px 0px 0px lightgrey;
 }
 
 #select-team {
