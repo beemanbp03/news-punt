@@ -1,4 +1,4 @@
-nflTeamsArray = [
+const nflTeamsArray = [
     {
         name:"arizona-cardinals",
         logo:"images/nfl-logos/arizona-cardinals.png",

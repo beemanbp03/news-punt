@@ -1,7 +1,6 @@
-var articleObject = [];
-var articleLimit = 100;
-
-
+const articleObject = [];
+const articleLimit = 100;
+const buttonsToDisable = document.querySelectorAll('.team-logo');
 /* 
     This function runs once a team logo has been clicked on the slider created in index.js, cleans
     any existing results off the screen, and then gets new results by passing the function's parameter "teamName"
@@ -21,7 +20,8 @@ const handleSelectTeam = (teamName) => {
 */
 const cleanResults = () => {
     //Clean the articleObject array
-    articleObject.pop();
+
+    articleObject.length = 0;
 
     //Remove current results showing
     if (document.querySelector('#resultsShowing')) {
@@ -43,7 +43,6 @@ const cleanResults = () => {
     source: rapidAPI ()
 */
 const getNewsResults = (teamName) => {
-    console.log(typeof teamName);
 
     const options = {
         method: 'GET',
@@ -57,31 +56,41 @@ const getNewsResults = (teamName) => {
     //Run the API search for the nfl team that was selected
     axios.request(options).then((response) => {
     console.log("GET initiated");
-    console.log(response.data);
+    //console.log(response.data);
     
     //Add new results set to array
     articleObject.push(response.data);
+    console.log("articleObject: " + articleObject);
 
     //Call function to build the news results section on the page
-    buildResultsSection();
+    if (articleObject.length == 1) {
+        buildResultsSection(makeTeamNameCapitalized(teamName));
+    }
     })
     .catch((err) => {
         console.log(err);
     })
-    .then(() => console.log("GET complete"));
+    .then(() => {
+        console.log("GET complete");
+    });
 }
 
 /* 
     This function builds the html required to display each news item from
     the articlesObject array
 */
-const buildResultsSection = () => {
+const buildResultsSection = (teamName) => {
+    //change title of page to reflect team name of results section (example: News Punt | Green Bay Packers)
+    document.title = `News Punt | ${teamName}`;
+
+
+
     const mainContainer = document.getElementById('news-container');
 
     //create results number range element
     resultsShowing = document.createElement('p');
     resultsShowing.setAttribute('id', 'resultsShowing');
-    resultsShowing.innerHTML = `Results: 1 - ${articleLimit}`;
+    resultsShowing.innerHTML = `Results for ${teamName}: 1 - ${articleLimit}`;
 
     mainContainer.appendChild(resultsShowing);
 
@@ -122,4 +131,17 @@ const buildResultsSection = () => {
             mainContainer.appendChild(newsCard);
 
         }
+}
+
+const makeTeamNameCapitalized = teamName => {
+    let teamNameArray = teamName.split("-");
+    let result = '';
+    
+    teamNameArray.forEach((item, index) => {
+        item = item[0].toUpperCase() + item.substr(1);
+        result = result + " " + item;
+        
+    });
+
+    return result.trim();
 }
