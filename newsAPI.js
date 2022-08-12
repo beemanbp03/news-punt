@@ -1,6 +1,7 @@
 const articleObject = [];
 const articleLimit = 100;
 const buttonsToDisable = document.querySelectorAll('.team-logo');
+const loader = document.querySelector("#loader");
 /* 
     This function runs once a team logo has been clicked on the slider created in index.js, cleans
     any existing results off the screen, and then gets new results by passing the function's parameter "teamName"
@@ -43,7 +44,7 @@ const cleanResults = () => {
     source: rapidAPI ()
 */
 const getNewsResults = (teamName) => {
-
+    displayLoading();
     const options = {
         method: 'GET',
         url: `https://nfl-news-feed.p.rapidapi.com/news/${teamName}`,
@@ -57,7 +58,7 @@ const getNewsResults = (teamName) => {
     axios.request(options).then((response) => {
     console.log("GET initiated");
     //console.log(response.data);
-    
+
     //Add new results set to array
     articleObject.push(response.data);
     console.log("articleObject: " + articleObject);
@@ -71,6 +72,7 @@ const getNewsResults = (teamName) => {
         console.log(err);
     })
     .then(() => {
+        hideLoading();
         console.log("GET complete");
     });
 }
@@ -144,4 +146,12 @@ const makeTeamNameCapitalized = teamName => {
     });
 
     return result.trim();
+}
+
+const displayLoading = () => {
+    loader.classList.add("display");
+}
+
+const hideLoading = () => {
+    loader.classList.remove("display");
 }
