@@ -18,18 +18,20 @@ This application should have tables for user information, NFL teams, and news po
 
 ### `Columns[]`
 
-| `Label`       | `Name`       | `Type`             | `Nullable` | `Default` | `Comment` |
-| ------------- | ------------ | ------------------ | ---------- | --------- | --------- |
-| ID            | UserID       | int auto_increment | `false`    |           |           |
-| Last Name     | LastName     | varchar(50)        | `false`    |           |           |
-| First Name    | FirstName    | varchar(50)        | `false`    |           |           |
-| User Name     | UserName     | varchar(50)        | `false`    |           |           |
-| Password      | Password     | varchar(50)        | `false`    |           |           |
-| Email         | Email        | varchar(50)        | `false`    |           |           |
-| Birthdate     | Birthdate    | date               | `false`    |           |           |
-| Phone         | Phone        | int                | `true`     |           |           |
-| Address       | Address      | varchar(50)        | `true`     |           |           |
-| PhoneEnabled  | PhoneEnabled | boolean            | `false`    |           |           |
+| `Label`         | `Name`            | `Type`             | `Nullable` | `Default` | `Comment` |
+| -------------   | ------------      | ------------------ | ---------- | --------- | --------- |
+| ID              | UserID            | int auto_increment | `false`    |           |           |
+| Last Name       | LastName          | varchar(50)        | `false`    |           |           |
+| First Name      | FirstName         | varchar(50)        | `false`    |           |           |
+| User Name       | UserName          | varchar(50)        | `false`    |           |           |
+| Password        | Password          | varchar(50)        | `false`    |           |           |
+| Email           | Email             | varchar(50)        | `false`    |           |           |
+| Birthdate       | Birthdate         | date               | `false`    |           |           |
+| Phone           | Phone             | int                | `true`     |           |           |
+| Address         | Address           | varchar(50)        | `true`     |           |           |
+| PhoneEnabled    | PhoneEnabled      | boolean            | `false`    |           |           |
+| Favorite Teams  | FavoriteTeams     | JSON               | 'true'     |           |           |
+| Favorite Players | Favorite Players | JSON               | 'true'     |           |           |
 
 ## Table: NFL Teams
 - `Name`: NFL Teams
