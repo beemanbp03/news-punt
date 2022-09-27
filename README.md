@@ -11,6 +11,7 @@ NFL fans need a platform that connects them to their favorite NFL teams through 
 - [Home Page Wireframe (not signed-in)](design-documents/NewsPunt.drawio.png)
 - [Home Page Wireframe (signed-in)]()
 - [Database Design](design-documents/database-design.md)
+- [Team Color Codes](design-documents/team-color-codes.md)
 
 ## Documentation and Reflection
 - [Project Timeline](design-documents/timeline.md)
