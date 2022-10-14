@@ -1,12 +1,12 @@
 # Timeline
 
 ## Block 1
-- [ ] Set up project structure and push to Github
-- [ ] Crreate MySQL database
+- [x] Set up project structure and push to Github
+- [x] Create MySQL database
 - [ ] Set up Users Table (with NFL Teams foreign key)
-- [ ] Set up NFL Teams table
-- [ ] Fill NFL Teams with data
-- [ ] Fill Users table with dummy data
+- [x] Set up NFL Teams table
+- [x] Fill NFL Teams with data
+- [x] Fill Users table with dummy data
 - [ ] Connect App To Database locally
 
 ## Block 2
