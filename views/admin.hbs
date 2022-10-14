@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/style.css">
+    <title>Admin Panel</title>
+</head>
+<body>
+    <nav>
+        <ul>
+            {{#if admin}}
+            <li><a href="/admin">Admin</a></li>
+            <li><a href="/home">Home</a></li>
+            {{else}}
+            <li><a href="/home">Home</a></li>
+            {{/if}}
+            <li><a href="/auth/register">Sign Up</a></li>
+            {{#if user}}
+            <li><a href="/profile">Profile</a></li>
+            <li><a href="/auth/logout">Logout</a></li>
+            {{else}}
+            <li><a href="/login">Login</a></li>
+            {{/if}}
+            
+        </ul>
+    </nav>
+    <hr>
+    <br>
+
+    <h1>Admin Page</h1>
+</body>
+</html>

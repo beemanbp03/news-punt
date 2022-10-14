@@ -1,3 +1,4 @@
+
 const nflTeamsArray = [
     {
         name:"arizona-cardinals",
@@ -130,7 +131,7 @@ const nflTeamsArray = [
 ];
 
 //
-const slideWrapper = document.getElementById('slideWrapper');
+const slideWrapper = document.querySelector("#slideWrapper");
 const wheelDiv = document.createElement('div');
 wheelDiv.setAttribute('id', 'teamSlideWheel');
 
@@ -169,9 +170,6 @@ slideWrapper.appendChild(wheelDiv);
 slideWrapper.appendChild(buttonDiv);
 
 
-
-
-
 //Make team selection carousel
 // Select all slides
 const teams = document.querySelector('.team');
@@ -197,6 +195,4 @@ prevTeam.addEventListener('click', () => {
     const slideAmount = teams.clientWidth * 3;
     wheelDiv.scrollLeft -= slideAmount;
 });
-
-
 

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/style.css">
+    <title>Sign In</title>
+</head>
+<body id="login-body">
+    <nav>
+        <ul>
+            {{#if admin}}
+            <li><a href="/admin">Admin</a></li>
+            <li><a href="/home">Home</a></li>
+            {{else}}
+            <li><a href="/home">Home</a></li>
+            {{/if}}
+            <li><a href="/auth/register">Sign Up</a></li>
+            {{#if user}}
+            <li><a href="/profile">Profile</a></li>
+            <li><a href="/auth/logout">Logout</a></li>
+            {{else}}
+            <li><a href="/login">Login</a></li>
+            {{/if}}
+            
+        </ul>
+    </nav>
+    <hr>
+    <br>
+
+    <h1>Profile</h1>
+    <br>
+    <p>This is your user profile information</p>
+    <br>
+
+    <h4>{{user.Username}}'s Information</h4>
+    <p>First Name: {{user.FirstName}}</p>
+    <p>Last Name: {{user.LastName}}</p>
+    <p>Phone: {{user.Phone}}</p>
+    <p>Favorite Team: {{user.FavoriteTeams.TeamName}}</p>
+    
+</body>
+</html>
