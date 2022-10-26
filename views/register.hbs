@@ -18,11 +18,12 @@
             {{/if}}
             <li><a href="/auth/register">Sign Up</a></li>
             {{#if user}}
-            <li><a href="/profile">Profile</a></li>
+            <li><a href="/auth/profile">Profile</a></li>
             <li><a href="/auth/logout">Logout</a></li>
             {{else}}
             <li><a href="/login">Login</a></li>
             {{/if}}
+            
         </ul>
     </nav>
     <hr>
@@ -56,6 +57,7 @@
         <label for="birthdate"><span class="required">*</span>Birthdate</label>
         <input type="date" id="birthdate" name="birthdate" placeholder="select your date of birth" required="required">
         <br>
+        <!--
         <label for="phone">Phone Number</label>
         <input type="tel" id="phone" name="phone" placeholder="(xxx)xxx-xxxx">
         <br>
@@ -324,6 +326,7 @@
             <option value="ZM">Zambia</option>
             <option value="ZW">Zimbabwe</option>
         </select>
+        -->
         <label for="favoriteTeam">Favorite Team</label>
         <select id="favoriteTeam" name="favoriteTeam">
             <option value="arizona-cardinals">Arizona Cardinals</option>

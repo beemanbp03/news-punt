@@ -79,6 +79,43 @@ exports.register = async (req, res) => {
     }
 }
 
+//EDIT PROFILE information
+exports.editProfile = async (req, res) => {
+    console.log("Inside authController.editProfile");
+    console.log(req.body);
+    //res.send("Trying to submit form...");
+
+   const {
+        username, 
+        password, 
+        confirmPassword,
+        firstName,
+        lastName,
+        email,
+        birthdate,
+        phone,
+        street,
+        unitNumber,
+        city,
+        zip,
+        country,
+        favoriteTeam 
+    } = req.body;
+
+    const phoneEnabled = 0;
+    const address = '{"street": "' + street + '", "unitNumber": "' + unitNumber + '", "city": "' + city + '", "zip": "' + zip + '", "country": "' + country + '"}';
+    const favoriteTeams = '{"TeamName":"' + favoriteTeam + '"}';
+
+    let usernameResults = await db.dbQuery("SELECT username FROM `news-punt-db-test`.user WHERE Username = ?", [username], (error, results) => {
+
+    });
+
+    //UPDATE USER IN DATABASE
+    let test = 0;
+    let updateUser = await db.dbQuery("UPDATE `news-punt-db-test`.user SET ? WHERE Email = '" + email + "'", {FirstName: firstName, LastName: lastName, Email: email, FavoriteTeams: favoriteTeams}, test);
+    res.status(200).redirect("/auth/profile");
+}
+
 //LOGIN Authentication
 exports.login = async (req, res) => {
     try {
@@ -108,7 +145,7 @@ exports.login = async (req, res) => {
             console.log(id);
             //Create Token
             const token = jwt.sign({id: id}, process.env.JWT_SECRET, {
-                expiresIn: process.env.JWT_EXPIRES_IN
+                expiresIn: process.env.JWT_EXPIRES_IN,
             });
             console.log("The token is: " + token);
 
@@ -147,6 +184,10 @@ exports.isLoggedIn = async (req, res, next) => {
             if (!user) {
                 return next();
             }
+
+            //Turn user's address into a JSON object
+            user[0].Address = JSON.parse(user[0].Address);
+            console.log(user[0].Address);
 
             //Turn user's favorite teams value into JSON object, modify TeamName, then store in request 
             user[0].FavoriteTeams = JSON.parse(user[0].FavoriteTeams);

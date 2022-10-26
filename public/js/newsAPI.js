@@ -44,17 +44,31 @@ const cleanResults = () => {
     source: rapidAPI ()
 */
 const getNewsResults = (teamName) => {
-    displayLoading();
-    const options = {
-        method: 'GET',
-        url: `https://nfl-news-feed.p.rapidapi.com/news/${teamName}`,
-        headers: {
-          'X-RapidAPI-Key': 'f412dabadbmsh6178f456828d5c5p11fb59jsn491d260a3482',
-          'X-RapidAPI-Host': 'nfl-news-feed.p.rapidapi.com'
-        }
-      };
+    var options = {};
+    console.log("inside getNewsResults");
+    if (teamName) {
+        console.log("inside getNewsResults.TeamName");
+        options = {
+            method: 'GET',
+            url: `https://nfl-news-feed.p.rapidapi.com/news/${teamName}`,
+            headers: {
+              'X-RapidAPI-Key': 'f412dabadbmsh6178f456828d5c5p11fb59jsn491d260a3482',
+              'X-RapidAPI-Host': 'nfl-news-feed.p.rapidapi.com'
+            }
+          };
+    } else {
+        console.log("inside getNewsResults.ALL");
+        options = {
+            method: 'GET',
+            url: `https://nfl-news-feed.p.rapidapi.com/news`,
+            headers: {
+              'X-RapidAPI-Key': 'f412dabadbmsh6178f456828d5c5p11fb59jsn491d260a3482',
+              'X-RapidAPI-Host': 'nfl-news-feed.p.rapidapi.com'
+            }
+          };
+    }
 
-    //Run the API search for the nfl team that was selected
+    //Run the API search
     axios.request(options).then((response) => {
     console.log("GET initiated");
     //console.log(response.data);
@@ -65,7 +79,12 @@ const getNewsResults = (teamName) => {
 
     //Call function to build the news results section on the page
     if (articleObject.length == 1) {
-        buildResultsSection(makeTeamNameCapitalized(teamName));
+        if (teamName) {
+            buildResultsSection(makeTeamNameCapitalized(teamName));
+        } else {
+            buildResultsSection("All News");
+        }
+        
     }
     })
     .catch((err) => {
@@ -155,3 +174,5 @@ const displayLoading = () => {
 const hideLoading = () => {
     loader.classList.remove("display");
 }
+
+getNewsResults();

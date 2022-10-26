@@ -18,7 +18,7 @@
             {{/if}}
             <li><a href="/auth/register">Sign Up</a></li>
             {{#if user}}
-            <li><a href="/profile">Profile</a></li>
+            <li><a href="/auth/profile">Profile</a></li>
             <li><a href="/auth/logout">Logout</a></li>
             {{else}}
             <li><a href="/login">Login</a></li>
@@ -40,7 +40,7 @@
         <input type="text" id="username" name="username" >
         <br>
         <label for="password">Password</label>
-        <input type="text" id="password" name="password" >
+        <input type="password" id="password" name="password" ><input type="checkbox" onclick="showPassword()">Show Password
         <br>
         <button type="submit">Sign In</button>
         <label>
@@ -48,5 +48,6 @@
         </label>
         
     </form>
+    <script src="/js/visibility.js"></script>
 </body>
 </html>

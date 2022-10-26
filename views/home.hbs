@@ -19,7 +19,7 @@
             {{/if}}
             <li><a href="/auth/register">Sign Up</a></li>
             {{#if user}}
-            <li><a href="/profile">Profile</a></li>
+            <li><a href="/auth/profile">Profile</a></li>
             <li><a href="/auth/logout">Logout</a></li>
             {{else}}
             <li><a href="/login">Login</a></li>
@@ -30,16 +30,15 @@
     <hr>
     <br>
     <h1>Home Page</h1>
-    <div id="slideWrapper">
-            <!-- nfl team slideer goes here from index.js -->
-        </div>
-        
-        <div id="loader"></div>
 
-        <div id="news-container">
-            <!-- news article results go here from newsAPI.js -->
-        </div>
         
+        <div id="slideWrapper"></div>
+        <div id="loader"></div>
+        <div id="news-container"></div>
+
+        <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
         <script src="/js/home.js"></script>
+        <script src="/js/newsAPI.js"></script>
+        
 </body>
 </html>
