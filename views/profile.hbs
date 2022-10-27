@@ -6,6 +6,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/css/style.css">
     <title>Sign In</title>
+    <script favoriteTeam={{user.FavoriteTeams.TeamName}}>
+        //Get the user's favorite team, remove hash between both words and then capitalize
+        //them.  Then, send the new readable team name to the correct paragraph tag in the profile section
+        const userFavoriteTeam = document.currentScript.getAttribute("favoriteTeam");
+        prettifyTeamName =  userFavoriteTeam.replace(/-/g, ' ').replace(/(?:^|\s)\S/g, a => a.toUpperCase());
+        window.onload = () => {
+            document.getElementById("team-name").innerHTML = "Favorite Team: " + prettifyTeamName;
+        }
+    </script>
 </head>
 <body id="login-body">
     <nav>
@@ -31,14 +40,13 @@
 
     <h1>Profile</h1>
     <br>
-    <p>This is your user profile information</p>
-    <br>
 
     <h4>{{user.Username}}'s Information</h4>
     <p>First Name: {{user.FirstName}}</p>
     <p>Last Name: {{user.LastName}}</p>
     <!-- <p>Phone: {{user.Phone}}</p> -->
-    <p>Favorite Team: {{user.FavoriteTeams.TeamName}}</p>
+    <p id="team-name">Favorite Team: {{user.FavoriteTeams.TeamName}}</p>
+    
 
     <br>
     <h2>Edit Your Profile Information</h2>
@@ -64,6 +72,7 @@
         <label for="lastName"><span class="required">*</span>Last Name</label>
         <input type="text" id="lastName" name="lastName" value={{user.LastName}} required="required">
         <br>
+        
         <!--
         <label for="phone">Phone Number</label>
         <input type="tel" id="phone" name="phone" placeholder={{user.Phone}}>

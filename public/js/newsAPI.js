@@ -1,13 +1,17 @@
+const userFavoriteTeam = document.currentScript.getAttribute("teamName");
+console.log("USER: " + userFavoriteTeam);
 const articleObject = [];
 const articleLimit = 100;
 const buttonsToDisable = document.querySelectorAll('.team-logo');
-const loader = document.querySelector("#loader");
+const searchAllButton = document.getElementById('searchAll');
+var searchAll = false;
 /* 
     This function runs once a team logo has been clicked on the slider created in index.js, cleans
     any existing results off the screen, and then gets new results by passing the function's parameter "teamName"
     through the getNewsResults function
 */
 const handleSelectTeam = (teamName) => {
+    searchAll = false;
     console.log("Running handleSelectTeam method...");
     console.log(teamName);
 
@@ -75,11 +79,13 @@ const getNewsResults = (teamName) => {
 
     //Add new results set to array
     articleObject.push(response.data);
-    console.log("articleObject: " + articleObject);
+    console.log(response.data);
+
+    //console.log("articleObject: " + articleObject);
 
     //Call function to build the news results section on the page
     if (articleObject.length == 1) {
-        if (teamName) {
+        if (teamName && searchAll == false) {
             buildResultsSection(makeTeamNameCapitalized(teamName));
         } else {
             buildResultsSection("All News");
@@ -91,7 +97,6 @@ const getNewsResults = (teamName) => {
         console.log(err);
     })
     .then(() => {
-        hideLoading();
         console.log("GET complete");
     });
 }
@@ -167,12 +172,18 @@ const makeTeamNameCapitalized = teamName => {
     return result.trim();
 }
 
-const displayLoading = () => {
-    loader.classList.add("display");
+
+//Initiated the GET for NFL news when paige loads
+if (userFavoriteTeam && searchAll == false) {
+    getNewsResults(userFavoriteTeam);
+} else {
+    getNewsResults();
 }
 
-const hideLoading = () => {
-    loader.classList.remove("display");
-}
-
-getNewsResults();
+//Initiate GET for NFL news if 'search all news' button is pressed
+searchAllButton.addEventListener('click', () => {
+    searchAll = true;
+    cleanResults();
+    getNewsResults();
+    console.log("searchAll = " + searchAll);
+});

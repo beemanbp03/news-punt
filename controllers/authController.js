@@ -68,8 +68,7 @@ exports.register = async (req, res) => {
     let hashedPassword = await bcrypt.hash(password, 8);
 
     //INSERT NEW USER INTO DATABASE
-    let test = 0;
-    let insertResults = await db.dbQuery("INSERT INTO `news-punt-db-test`.user SET ?", {Username: username, Password: hashedPassword, FirstName: firstName, LastName: lastName, Email: email, Birthdate: birthdate, Phone: phone, Address: address, PhoneEnabled: phoneEnabled, FavoriteTeams: favoriteTeams}, test);
+    let insertResults = await db.dbQuery("INSERT INTO `news-punt-db-test`.user SET ?", {Username: username, Password: hashedPassword, FirstName: firstName, LastName: lastName, Email: email, Birthdate: birthdate, Phone: phone, Address: address, PhoneEnabled: phoneEnabled, FavoriteTeams: favoriteTeams});
     if (insertResults) {
         res.render('register', {
             message: true,
@@ -106,13 +105,10 @@ exports.editProfile = async (req, res) => {
     const address = '{"street": "' + street + '", "unitNumber": "' + unitNumber + '", "city": "' + city + '", "zip": "' + zip + '", "country": "' + country + '"}';
     const favoriteTeams = '{"TeamName":"' + favoriteTeam + '"}';
 
-    let usernameResults = await db.dbQuery("SELECT username FROM `news-punt-db-test`.user WHERE Username = ?", [username], (error, results) => {
-
-    });
+    let usernameResults = await db.dbQuery("SELECT username FROM `news-punt-db-test`.user WHERE Username = ?", [username], (error, results) => {});
 
     //UPDATE USER IN DATABASE
-    let test = 0;
-    let updateUser = await db.dbQuery("UPDATE `news-punt-db-test`.user SET ? WHERE Email = '" + email + "'", {FirstName: firstName, LastName: lastName, Email: email, FavoriteTeams: favoriteTeams}, test);
+    let updateUser = await db.dbQuery("UPDATE `news-punt-db-test`.user SET ? WHERE Email = '" + email + "'", {FirstName: firstName, LastName: lastName, Email: email, FavoriteTeams: favoriteTeams});
     res.status(200).redirect("/auth/profile");
 }
 
@@ -120,7 +116,6 @@ exports.editProfile = async (req, res) => {
 exports.login = async (req, res) => {
     try {
         console.log("Inside authController.login");
-        test = 0;
         const { username, password } = req.body;
         if (!username || !password) {
              return res.status(400).render('login', {
@@ -130,7 +125,7 @@ exports.login = async (req, res) => {
              });
         }
 
-        let loginResults = await db.dbQuery('SELECT * FROM `news-punt-db-test`.user WHERE Username = ?', [username], test);
+        let loginResults = await db.dbQuery('SELECT * FROM `news-punt-db-test`.user WHERE Username = ?', [username]);
         console.log("Login Results: " + JSON.stringify(loginResults));
         //Check Failed login due to incorrect info
         if (!loginResults || !(await bcrypt.compare(password, loginResults[0].Password))) {
@@ -176,8 +171,7 @@ exports.isLoggedIn = async (req, res, next) => {
             //console.log(decoded);
 
             // 2) Check if user still exists in database
-            test = 0;
-            let user = await db.dbQuery("SELECT * FROM `news-punt-db-test`.user WHERE idUser = ?", [decoded.id], test);
+            let user = await db.dbQuery("SELECT * FROM `news-punt-db-test`.user WHERE idUser = ?", [decoded.id]);
             console.log(user);
 
             // 3) If databse didn't return a user, exit out of function
@@ -191,7 +185,6 @@ exports.isLoggedIn = async (req, res, next) => {
 
             //Turn user's favorite teams value into JSON object, modify TeamName, then store in request 
             user[0].FavoriteTeams = JSON.parse(user[0].FavoriteTeams);
-            user[0].FavoriteTeams.TeamName = user[0].FavoriteTeams.TeamName.replace(/-/g, ' ').replace(/(?:^|\s)\S/g, a => a.toUpperCase());
             
             // 4) Set the request's user as the user returned by the database
             req.user = user[0];

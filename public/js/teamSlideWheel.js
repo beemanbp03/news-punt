@@ -155,19 +155,25 @@ nflTeamsArray.forEach(item => {
 
 //Add next/prev buttons for teamWheel
 const buttonDiv = document.createElement('div');
+const lineBreak = document.createElement('br');
 const nextButton = document.createElement('button');
 const prevButton = document.createElement('button');
+const allNewsButton = document.createElement('button');
 buttonDiv.setAttribute('id', 'btns');
 nextButton.setAttribute('class', 'btn btn-next');
 prevButton.setAttribute('class', 'btn btn-prev');
+allNewsButton.setAttribute('id', 'btn-all-news');
 nextButton.innerHTML = ">";
 prevButton.innerHTML = "<";
+allNewsButton.innerHTML = "Search All NFL News";
 
 buttonDiv.appendChild(prevButton);
 buttonDiv.appendChild(nextButton);
 
+
 slideWrapper.appendChild(wheelDiv);
 slideWrapper.appendChild(buttonDiv);
+
 
 
 //Make team selection carousel
