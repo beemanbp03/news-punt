@@ -170,9 +170,6 @@ exports.isLoggedIn = async (req, res, next) => {
 
         //Get news-punt-db.teams info for request
         let query = "SELECT * from `news-punt-db-test`.teams";
-        let teams = await db.dbQuery(query);
-        console.log(teams);
-        req.teams = teams;
 
         if (req.cookies.jwt) {
 

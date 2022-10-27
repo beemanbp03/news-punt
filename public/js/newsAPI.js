@@ -10,13 +10,12 @@ var searchAll = false;
     any existing results off the screen, and then gets new results by passing the function's parameter "teamName"
     through the getNewsResults function
 */
-const handleSelectTeam = (teamName) => {
+const handleSelectTeam = (teamName, color1, color2) => {
     searchAll = false;
     console.log("Running handleSelectTeam method...");
     console.log(teamName);
-
     cleanResults();
-    getNewsResults(teamName);
+    getNewsResults(teamName, color1, color2);
 }
 
 /*
@@ -46,7 +45,7 @@ const cleanResults = () => {
 
     source: rapidAPI ()
 */
-const getNewsResults = (teamName) => {
+const getNewsResults = (teamName, color1, color2) => {
     var options = {};
     console.log("inside getNewsResults");
     if (teamName) {
@@ -85,7 +84,7 @@ const getNewsResults = (teamName) => {
     //Call function to build the news results section on the page
     if (articleObject.length == 1) {
         if (teamName && searchAll == false) {
-            buildResultsSection(makeTeamNameCapitalized(teamName));
+            buildResultsSection(makeTeamNameCapitalized(teamName), color1, color2);
         } else {
             buildResultsSection("All News");
         }
@@ -104,13 +103,15 @@ const getNewsResults = (teamName) => {
     This function builds the html required to display each news item from
     the articlesObject array
 */
-const buildResultsSection = (teamName) => {
+const buildResultsSection = (teamName, color1, color2) => {
+    var colorMain = "#" + color1;
+    var colorSecondary = "#" + color2;
+
     //change title of page to reflect team name of results section (example: News Punt | Green Bay Packers)
     document.title = `News Punt | ${teamName}`;
 
-
-
     const mainContainer = document.getElementById('news-container');
+    
 
     //create results number range element
     resultsShowing = document.createElement('p');
@@ -129,7 +130,7 @@ const buildResultsSection = (teamName) => {
             //Create .news-card a element
             newsCard = document.createElement('a');
             newsCard.classList.add('news-card');
-            newsCard.setAttribute('style', "text-decoration:none;color:inherit;");
+            newsCard.setAttribute('style', `text-decoration:none;color:inherit;box-shadow: 0px 3px 7px ${colorMain}, inset 0 0 10px ${colorMain};`);
             newsCard.setAttribute('href', itemObject.url);
             newsCard.setAttribute('target', '_blank');
             
@@ -174,7 +175,7 @@ const makeTeamNameCapitalized = teamName => {
 
 //Initiated the GET for NFL news when paige loads
 if (userFavoriteTeam && searchAll == false) {
-    getNewsResults(userFavoriteTeam);
+    getNewsResults(userFavoriteTeam, color1, color2);
 } else {
     getNewsResults();
 }
@@ -183,6 +184,7 @@ if (userFavoriteTeam && searchAll == false) {
 searchAllButton.addEventListener('click', () => {
     searchAll = true;
     cleanResults();
+    document.body.style.backgroundColor = "#F7F7F7";
     getNewsResults();
     console.log("searchAll = " + searchAll);
 });

@@ -21,7 +21,6 @@ router.get('/home', authController.isLoggedIn, (req, res) => {
     res.render('home', {
         user: req.user,
         admin: req.admin,
-        teams: req.teams
     });
 });
 
