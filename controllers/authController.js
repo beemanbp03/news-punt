@@ -153,7 +153,7 @@ exports.login = async (req, res) => {
             }
 
             res.cookie('jwt', token, cookieOptions);
-            res.status(200).redirect("/admin");
+            res.status(200).redirect("/home");
         }
 
     } catch (err) {
@@ -163,9 +163,19 @@ exports.login = async (req, res) => {
 
 //CHECK if user is logged in by 
 exports.isLoggedIn = async (req, res, next) => {
+    console.log("INSIDE USER LOGIN CHECK");
     console.log(req.cookies);
-    if (req.cookies.jwt) {
-        try {
+
+    try {
+
+        //Get news-punt-db.teams info for request
+        let query = "SELECT * from `news-punt-db-test`.teams";
+        let teams = await db.dbQuery(query);
+        console.log(teams);
+        req.teams = teams;
+
+        if (req.cookies.jwt) {
+
             // 1) Verify the token
             const decoded = await promisify(jwt.verify)(req.cookies.jwt, process.env.JWT_SECRET);
             //console.log(decoded);
@@ -194,17 +204,19 @@ exports.isLoggedIn = async (req, res, next) => {
                 req.admin = false;
             }
 
+
             console.log(req.user.FavoriteTeams.TeamName);
             return next();
 
-        } catch (err) {
-            console.log(err);
-            return next();
+        } else {
+            next();
         }
-    } else {
-        next();
+    } catch (err) {
+        console.log(err);
+        return next();
     }
 }
+
 
 //LOGOUT user
 exports.logout = async (req, res) => {

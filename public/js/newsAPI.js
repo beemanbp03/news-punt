@@ -41,7 +41,6 @@ const cleanResults = () => {
     });
 }
 
-
 /*
     This function uses Axios GET to retrieve the selected team's news from the api
 

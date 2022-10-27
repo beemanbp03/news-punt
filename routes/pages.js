@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const authController = require('../controllers/authController');
+const dbController = require('../controllers/dbController');
 
 router.get('/admin', authController.isLoggedIn, (req, res) => {
     if (req.admin) {
@@ -19,7 +20,8 @@ router.get('/admin', authController.isLoggedIn, (req, res) => {
 router.get('/home', authController.isLoggedIn, (req, res) => {
     res.render('home', {
         user: req.user,
-        admin: req.admin
+        admin: req.admin,
+        teams: req.teams
     });
 });
 
