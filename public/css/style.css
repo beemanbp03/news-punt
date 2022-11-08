@@ -4,6 +4,10 @@ body {
     font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
+nav {
+    background-color: white;
+}
+
 #btns {
     display: flex;
     flex-direction: row;
@@ -21,6 +25,7 @@ body {
 
 /* container of .team */
 #teamSlideWheel {
+    background-color: white;
     height: 100px;
     width: 100%;
     max-width: 100%;

@@ -5,6 +5,7 @@ const articleLimit = 100;
 const buttonsToDisable = document.querySelectorAll('.team-logo');
 const searchAllButton = document.getElementById('searchAll');
 var searchAll = false;
+
 /* 
     This function runs once a team logo has been clicked on the slider created in index.js, cleans
     any existing results off the screen, and then gets new results by passing the function's parameter "teamName"
@@ -106,13 +107,16 @@ const getNewsResults = (teamName, color1, color2) => {
 const buildResultsSection = (teamName, color1, color2) => {
     var colorMain = "#" + color1;
     var colorSecondary = "#" + color2;
+    console.log(colorSecondary);
+
+    const mainContainer = document.getElementById('news-container');
+    document.body.style.backgroundColor = colorSecondary;
+
 
     //change title of page to reflect team name of results section (example: News Punt | Green Bay Packers)
     document.title = `News Punt | ${teamName}`;
 
-    const mainContainer = document.getElementById('news-container');
     
-
     //create results number range element
     resultsShowing = document.createElement('p');
     resultsShowing.setAttribute('id', 'resultsShowing');
@@ -130,7 +134,7 @@ const buildResultsSection = (teamName, color1, color2) => {
             //Create .news-card a element
             newsCard = document.createElement('a');
             newsCard.classList.add('news-card');
-            newsCard.setAttribute('style', `text-decoration:none;color:inherit;box-shadow: 0px 3px 7px ${colorMain}, inset 0 0 10px ${colorMain};`);
+            newsCard.setAttribute('style', `text-decoration:none;color:inherit;box-shadow:inset 0px 0px 40px -2px ${colorMain};`);
             newsCard.setAttribute('href', itemObject.url);
             newsCard.setAttribute('target', '_blank');
             

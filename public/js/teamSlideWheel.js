@@ -20,12 +20,12 @@ const nflTeamsArray = [
     },
     {
         name:"buffalo-bills",
-        colorCodes:["00338d", "c60c30"],
+        colorCodes:["c60c30", "00338d"],
         logo:"images/nfl-logos/buffalo-bills.png",
     },
     {
         name:"carolina-panthers",
-        colorCodes:["0085ca", "000000"],
+        colorCodes:["000000", "0085ca"],
         logo:"images/nfl-logos/carolina-panthers.png",
     },
     {
@@ -40,17 +40,17 @@ const nflTeamsArray = [
     },
     {
         name:"cleveland-browns",
-        colorCodes:["311d00", "ff3c00"],
+        colorCodes:["ff3c00", "311d00"],
         logo:"images/nfl-logos/cleveland-browns.png",
     },
     {
         name:"dallas-cowboys",
-        colorCodes:["002244", "869397"],
+        colorCodes:["869397", "002244"],
         logo:"images/nfl-logos/dallas-cowboys.png",
     },
     {
         name:"denver-broncos",
-        colorCodes:["002244", "FB4F14"],
+        colorCodes:["FB4F14", "002244"],
         logo:"images/nfl-logos/denver-broncos.png",
     },
     {
@@ -75,12 +75,12 @@ const nflTeamsArray = [
     },
     {
         name:"jacksonville-jaguars",
-        colorCodes:["006778", "D7A22A"],
+        colorCodes:["D7A22A", "006778"],
         logo:"images/nfl-logos/jacksonville-jaguars.png",
     },
     {
         name:"kansas-city-chiefs",
-        colorCodes:["FFB612", "e31837"],
+        colorCodes:["FFB612", "ffffff"],
         logo:"images/nfl-logos/kansas-city-chiefs.png",
     },
     {
@@ -90,37 +90,37 @@ const nflTeamsArray = [
     },
     {
         name:"los-angeles-chargers",
-        colorCodes:["0073cf", "ffb612"],
+        colorCodes:["ffb612", "0073cf"],
         logo:"images/nfl-logos/los-angeles-chargers.png",
     },
     {
         name:"los-angeles-rams",
-        colorCodes:["003594", "fed02a"],
+        colorCodes:["fed02a", "003594"],
         logo:"images/nfl-logos/los-angeles-rams.png",
     },
     {
         name:"miami-dolphins",
-        colorCodes:["008e97", "f26a24"],
+        colorCodes:["f26a24", "008e97"],
         logo:"images/nfl-logos/miami-dolphins.png",
     },
     {
         name:"minnesota-vikings",
-        colorCodes:["4f2683", "ffc62f"],
+        colorCodes:["ffc62f", "4f2683"],
         logo:"images/nfl-logos/minnesota-vikings.png",
     },
     {
         name:"new-england-patriots",
-        colorCodes:["002244", "c60c30"],
+        colorCodes:["c60c30", "002244"],
         logo:"images/nfl-logos/new-england-patriots.png",
     },
     {
         name:"new-orleans-saints",
-        colorCodes:["d3bc8d", "D3BC8D"],
+        colorCodes:["D3BC8D", "ffffff"],
         logo:"images/nfl-logos/new-orleans-saints.png",
     },
     {
         name:"new-york-giants",
-        colorCodes:["0b2265", "a71930"],
+        colorCodes:["a71930", "0b2265"],
         logo:"images/nfl-logos/new-york-giants.png",
     },
     {
@@ -145,7 +145,7 @@ const nflTeamsArray = [
     },
     {
         name:"seattle-seahawks",
-        colorCodes:["002244", "69be28"],
+        colorCodes:["69be28", "002244"],
         logo:"images/nfl-logos/seattle-seahawks.png",
     },
     {
@@ -155,7 +155,7 @@ const nflTeamsArray = [
     },
     {
         name:"tennessee-titans",
-        colorCodes:["002244", "4b92db"],
+        colorCodes:["FF0000", "4b92db"],
         logo:"images/nfl-logos/tennessee-titans.png",
     },
     {
