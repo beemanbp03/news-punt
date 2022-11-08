@@ -4,10 +4,6 @@ body {
     font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
-nav {
-    background-color: white;
-}
-
 #btns {
     display: flex;
     flex-direction: row;
@@ -48,12 +44,12 @@ nav {
     font-size: 1em;
 }
 
-#resultsShowing {
+#resultsTeamTitle {
     width: 100%;
     max-width: 100%;
-    text-align: left;
+    text-align: center;
     margin: 1em;
-    color: grey;
+    color: black;
 }
 
 /* container of .news-card */

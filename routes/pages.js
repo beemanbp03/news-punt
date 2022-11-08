@@ -24,7 +24,7 @@ router.get('/home', authController.isLoggedIn, (req, res) => {
     });
 });
 
-router.get('/login', authController.isLoggedIn, (req, res) => {
+router.get('/login', (req, res) => {
     res.render('login', {
         user: req.user,
         admin: req.admin

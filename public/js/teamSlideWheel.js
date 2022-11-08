@@ -20,7 +20,7 @@ const nflTeamsArray = [
     },
     {
         name:"buffalo-bills",
-        colorCodes:["c60c30", "00338d"],
+        colorCodes:["c60c30", "00338d96"],
         logo:"images/nfl-logos/buffalo-bills.png",
     },
     {
@@ -100,7 +100,7 @@ const nflTeamsArray = [
     },
     {
         name:"miami-dolphins",
-        colorCodes:["f26a24", "008e97"],
+        colorCodes:["f26a24", "008e9796"],
         logo:"images/nfl-logos/miami-dolphins.png",
     },
     {
@@ -150,12 +150,12 @@ const nflTeamsArray = [
     },
     {
         name:"tampa-bay-buccaneers",
-        colorCodes:["d50a0a", "34302b"],
+        colorCodes:["d50a0a", "34302b96"],
         logo:"images/nfl-logos/tampa-bay-buccaneers.png",
     },
     {
         name:"tennessee-titans",
-        colorCodes:["FF0000", "4b92db"],
+        colorCodes:["FF0000", "4b92db96"],
         logo:"images/nfl-logos/tennessee-titans.png",
     },
     {

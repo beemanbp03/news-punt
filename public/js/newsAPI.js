@@ -29,8 +29,8 @@ const cleanResults = () => {
     articleObject.length = 0;
 
     //Remove current results showing
-    if (document.querySelector('#resultsShowing')) {
-        const resultsShowingToDelete = document.querySelector('#resultsShowing');
+    if (document.querySelector('#resultsTeamTitle')) {
+        const resultsShowingToDelete = document.querySelector('#resultsTeamTitle');
         resultsShowingToDelete.remove();
     }
 
@@ -105,12 +105,14 @@ const getNewsResults = (teamName, color1, color2) => {
     the articlesObject array
 */
 const buildResultsSection = (teamName, color1, color2) => {
-    var colorMain = "#" + color1;
+    var colorMain = "#" + color1 ;
     var colorSecondary = "#" + color2;
     console.log(colorSecondary);
 
     const mainContainer = document.getElementById('news-container');
-    document.body.style.backgroundColor = colorSecondary;
+    const main = document.getElementById('main');
+    main.style.backgroundColor = colorSecondary;
+    
 
 
     //change title of page to reflect team name of results section (example: News Punt | Green Bay Packers)
@@ -118,11 +120,12 @@ const buildResultsSection = (teamName, color1, color2) => {
 
     
     //create results number range element
-    resultsShowing = document.createElement('p');
-    resultsShowing.setAttribute('id', 'resultsShowing');
-    resultsShowing.innerHTML = `Results for ${teamName}: 1 - ${articleLimit}`;
+    resultsTeamTitle = document.createElement('h1');
+    resultsTeamTitle.setAttribute('id', 'resultsTeamTitle');
+    resultsTeamTitle.innerHTML = teamName;
+    resultsTeamTitle.style.color = colorMain;
 
-    mainContainer.appendChild(resultsShowing);
+    mainContainer.appendChild(resultsTeamTitle);
 
 
         //Article output loop
