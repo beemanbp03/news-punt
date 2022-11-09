@@ -175,6 +175,11 @@ const buildResultsSection = (division, teamName, color1, color2) => {
             mainContainer.appendChild(newsCard);
 
         }
+    //Remove loading bar once results section is built
+    const mainDiv = document.getElementById('main');
+    const loader = document.querySelector('.loader');
+    mainDiv.removeChild(loader);
+
 }
 
 const makeTeamNameCapitalized = teamName => {
