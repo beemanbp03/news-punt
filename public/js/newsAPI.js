@@ -4,6 +4,8 @@ const articleObject = [];
 const articleLimit = 100;
 const buttonsToDisable = document.querySelectorAll('.team-logo');
 const searchAllButton = document.getElementById('searchAll');
+const searchAfcButton = document.getElementById('searchAfc');
+const searchNfcButton = document.getElementById('searchNfc');
 var searchAll = false;
 
 /* 
@@ -11,12 +13,11 @@ var searchAll = false;
     any existing results off the screen, and then gets new results by passing the function's parameter "teamName"
     through the getNewsResults function
 */
-const handleSelectTeam = (teamName, color1, color2) => {
+const handleSelectTeam = (division, teamName, color1, color2) => {
     searchAll = false;
     console.log("Running handleSelectTeam method...");
-    console.log(teamName);
     cleanResults();
-    getNewsResults(teamName, color1, color2);
+    getNewsResults(division, teamName, color1, color2);
 }
 
 /*
@@ -46,19 +47,29 @@ const cleanResults = () => {
 
     source: rapidAPI ()
 */
-const getNewsResults = (teamName, color1, color2) => {
+const getNewsResults = (division, teamName, color1, color2) => {
     var options = {};
     console.log("inside getNewsResults");
     if (teamName) {
-        console.log("inside getNewsResults.TeamName");
-        options = {
-            method: 'GET',
-            url: `https://nfl-news-feed.p.rapidapi.com/news/${teamName}`,
-            headers: {
-              'X-RapidAPI-Key': 'f412dabadbmsh6178f456828d5c5p11fb59jsn491d260a3482',
-              'X-RapidAPI-Host': 'nfl-news-feed.p.rapidapi.com'
-            }
-          };
+        if (teamName === "AFC" || teamName === "NFC") {
+            options = {
+                method: 'GET',
+                url: `https://nfl-news-feed.p.rapidapi.com/news/${division}`,
+                headers: {
+                  'X-RapidAPI-Key': 'f412dabadbmsh6178f456828d5c5p11fb59jsn491d260a3482',
+                  'X-RapidAPI-Host': 'nfl-news-feed.p.rapidapi.com'
+                }
+              };
+        } else {
+            options = {
+                method: 'GET',
+                url: `https://nfl-news-feed.p.rapidapi.com/news/${division}/${teamName}`,
+                headers: {
+                  'X-RapidAPI-Key': 'f412dabadbmsh6178f456828d5c5p11fb59jsn491d260a3482',
+                  'X-RapidAPI-Host': 'nfl-news-feed.p.rapidapi.com'
+                }
+              };
+        }
     } else {
         console.log("inside getNewsResults.ALL");
         options = {
@@ -85,9 +96,9 @@ const getNewsResults = (teamName, color1, color2) => {
     //Call function to build the news results section on the page
     if (articleObject.length == 1) {
         if (teamName && searchAll == false) {
-            buildResultsSection(makeTeamNameCapitalized(teamName), color1, color2);
+            buildResultsSection(division, makeTeamNameCapitalized(teamName), color1, color2);
         } else {
-            buildResultsSection("All News");
+            buildResultsSection("League", "All News", "#ffffff", "#000000");
         }
         
     }
@@ -104,7 +115,7 @@ const getNewsResults = (teamName, color1, color2) => {
     This function builds the html required to display each news item from
     the articlesObject array
 */
-const buildResultsSection = (teamName, color1, color2) => {
+const buildResultsSection = (division, teamName, color1, color2) => {
     var colorMain = "#" + color1 ;
     var colorSecondary = "#" + color2;
     console.log(colorSecondary);
@@ -191,7 +202,23 @@ if (userFavoriteTeam && searchAll == false) {
 searchAllButton.addEventListener('click', () => {
     searchAll = true;
     cleanResults();
-    document.body.style.backgroundColor = "#F7F7F7";
+    const main = document.getElementById('main');
+    main.style.backgroundColor = "#F7F7F7";
     getNewsResults();
     console.log("searchAll = " + searchAll);
 });
+
+searchAfcButton.addEventListener('click', () => {
+    cleanResults();
+    const main = document.getElementById('main');
+    main.style.backgroundColor = "#F7F7F7";
+    getNewsResults("afc", "AFC", "null", "null");
+});
+
+searchNfcButton.addEventListener('click', () => {
+    cleanResults();
+    const main = document.getElementById('main');
+    main.style.backgroundColor = "#F7F7F7";
+    getNewsResults("nfc", "NFC", "null", "null");
+});
+
