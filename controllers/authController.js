@@ -89,33 +89,52 @@ exports.register = async (req, res) => {
 //EDIT PROFILE information
 exports.editProfile = async (req, res) => {
     console.log("Inside authController.editProfile");
-    //res.send("Trying to submit form...");
+    if (req.cookies.jwtGoogle) {
+        //DECODE cookie
+        const decoded = await promisify(jwt.verify)(req.cookies.jwtGoogle, process.env.JWT_SECRET);
+        
+        //EDIT cookie
+        decoded.FavoriteTeams.TeamName = req.body.favoriteTeam;
+        
+        //RE-SIGN cookie
+        const tokenGoogle = jwt.sign(decoded, process.env.JWT_SECRET);
 
-   const {
-        username, 
-        password, 
-        confirmPassword,
-        firstName,
-        lastName,
-        email,
-        birthdate,
-        phone,
-        street,
-        unitNumber,
-        city,
-        zip,
-        country,
-        favoriteTeam 
-    } = req.body;
-
-    const phoneEnabled = 0;
-    const address = '{"street": "' + street + '", "unitNumber": "' + unitNumber + '", "city": "' + city + '", "zip": "' + zip + '", "country": "' + country + '"}';
-    const favoriteTeams = '{"TeamName":"' + favoriteTeam + '"}';
-
-    let usernameResults = await db.dbQuery("SELECT username FROM `news-punt-db-test`.user WHERE Username = ?", [username], (error, results) => {});
-
-    //UPDATE USER IN DATABASE
-    let updateUser = await db.dbQuery("UPDATE `news-punt-db-test`.user SET ? WHERE Email = '" + email + "'", {FirstName: firstName, LastName: lastName, Email: email, FavoriteTeams: favoriteTeams});
+        //Create Cookie Options
+        const cookieOptions = {
+            expires: new Date(
+                Date.now() + process.env.JWT_COOKIE_EXPIRES * 24 * 60 * 60 * 1000
+            ),
+            httpOnly: true
+        }
+        //SET new cookie in the response
+        res.cookie('jwtGoogle', tokenGoogle, cookieOptions);
+    } else {
+        const {
+            username, 
+            password, 
+            confirmPassword,
+            firstName,
+            lastName,
+            email,
+            birthdate,
+            phone,
+            street,
+            unitNumber,
+            city,
+            zip,
+            country,
+            favoriteTeam 
+        } = req.body;
+    
+        const phoneEnabled = 0;
+        const address = '{"street": "' + street + '", "unitNumber": "' + unitNumber + '", "city": "' + city + '", "zip": "' + zip + '", "country": "' + country + '"}';
+        const favoriteTeams = '{"TeamName":"' + favoriteTeam + '"}';
+    
+        let usernameResults = await db.dbQuery("SELECT username FROM `news-punt-db-test`.user WHERE Username = ?", [username], (error, results) => {});
+    
+        //UPDATE USER IN DATABASE
+        let updateUser = await db.dbQuery("UPDATE `news-punt-db-test`.user SET ? WHERE Email = '" + email + "'", {FirstName: firstName, LastName: lastName, Email: email, FavoriteTeams: favoriteTeams});
+    }
     res.status(200).redirect("/auth/profile");
 }
 

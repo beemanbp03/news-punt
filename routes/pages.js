@@ -17,6 +17,8 @@ router.get('/admin', authController.isLoggedIn, (req, res) => {
     }
 });
 
+router.get('/', (req, res) => res.redirect('/home'));
+
 router.get('/home', authController.isLoggedIn, (req, res) => {
     res.render('home', {
         user: req.user,
