@@ -3,43 +3,44 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="/css/style.css">
 
     <title>Home Page</title>
 </head>
-<body>
-    <nav>
-        <ul>
-            {{#if admin}}
-            <li><a href="/admin">Admin</a></li>
-            <li><a href="/home">Home</a></li>
-            {{else}}
-            <li><a href="/home">Home</a></li>
-            {{/if}}
-            {{#if user}}
-            <li><a href="/auth/profile">Profile</a></li>
-            <li><a href="/auth/logout">Logout</a></li>
-            {{else}}
-            <li><a href="/auth/register">Sign Up</a></li>
-            <li><a href="/login">Login</a></li>
-            {{/if}}
+    <body>
+        <nav>
+            <ul>
+                {{#if admin}}
+                <li><a href="/admin">Admin</a></li>
+                <li><a href="/home">Home</a></li>
+                {{else}}
+                <li><a href="/home">Home</a></li>
+                {{/if}}
+                {{#if user}}
+                <li><a href="/auth/profile">Profile</a></li>
+                <li><a href="/auth/logout">Logout</a></li>
+                {{else}}
+                <li><a href="/auth/register">Sign Up</a></li>
+                <li><a href="/login">Login</a></li>
+                {{/if}}
+                
+            </ul>
+        </nav>
+        <hr>
+        <main id="main">
             
-        </ul>
-    </nav>
-    <hr>
-    <main id="main">
-        <button id="searchAll" style="margin:2px;text-align: center; width: 100%; height: 2rem;">ALL LEAGUE NEWS</button>
-        <button id="searchAfc" style="margin:2px;text-align: center; width: 100%; height: 2rem;">AFC News</button>
-        <button id="searchNfc" style="margin:2px;text-align: center; width: 100%; height: 2rem;">NFC News</button>
-        <div id="slideWrapper"></div>
-        <div id="news-container"></div>
-        <div class="loader"></div>
+            <button id="searchAll" style="margin:2px;text-align: center; width: 100%; height: 2rem;">ALL LEAGUE NEWS</button>
+            <button id="searchAfc" style="margin:2px;text-align: center; width: 100%; height: 2rem;">AFC News</button>
+            <button id="searchNfc" style="margin:2px;text-align: center; width: 100%; height: 2rem;">NFC News</button>
+            <div id="slideWrapper"></div>
+            <div class="loader"></div>
+            
 
-        <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-        <script src="/js/teamSlideWheel.js" userExists={{user.FavoriteTeams.TeamName}}></script>
-        <script type="text/javascript" src="/js/newsAPI.js" teamName={{user.FavoriteTeams.TeamName}}></script>
-    </main>
+            <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+            <script src="/js/teamSlideWheel.js" userExists={{user.FavoriteTeams.TeamName}}></script>
+            <script type="text/javascript" src="/js/newsAPI.js" teamName={{user.FavoriteTeams.TeamName}}></script>
+        </main>
         
-</body>
+    </body>
 </html>

@@ -2,7 +2,9 @@
 body {
     background-color: #F7F7F7;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 90%;
 }
+
 
 #btns {
     display: flex;
@@ -12,9 +14,8 @@ body {
 }
 
 
-
 #slideWrapper {
-    margin: 1rem;
+    margin: 1em;
     position: relative;
     overflow: hidden;
 }
@@ -46,7 +47,6 @@ body {
 
 #resultsTeamTitle {
     width: 100%;
-    max-width: 100%;
     text-align: center;
     margin: 1em;
     color: black;
@@ -58,17 +58,14 @@ body {
     flex-direction: row;
     flex-wrap: wrap;
     text-align: center;
-    margin: auto;
-    width: 75vw;
+    width: 100%;
     justify-content: center;
-    /*border: 2px solid blue;*/
 }
 
 .news-card {
     background-color: white;
     border-radius: 1em;
     width: 100%;
-    max-width: 100%;
     padding: 1em;
     margin: 5px;
     box-shadow: 0px 5px 10px lightgrey;
@@ -92,7 +89,6 @@ body {
     max-height: 100px;
     flex: 1 0 100%;
     transition: 0.2s;
-    /*border: 2px solid blue;*/
 }
 
 .team:hover {
@@ -122,6 +118,70 @@ body {
     height: 120px;
     animation: spin 1s linear infinite;
 }
+
+.form-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
+    height: auto;
+    /*border: 2px solid blue;*/
+}
+
+.form-card {
+    background-color: white;
+    border-radius: 1em;
+    margin: 0.50em;
+    padding: 0.25em 1em 0.25em 1em;
+    box-shadow: 0px 5px 10px lightgrey;
+}
+
+.form-card h1 {
+    text-align: center;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    padding: 1em;
+}
+
+.form-group > * {
+    width: 100%;
+    height: auto;
+    border-radius: 0.5em;
+    text-align: center;
+    margin: 0 auto;
+}
+
+
+.form-group button {
+    background-color: blue;
+    color: white;
+    border: none;
+    height: 2.5em;
+}
+
+.container {
+    width: 100%;
+}
+
+.g_signin_container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    align-items: center;
+    padding-bottom: 2em;
+    text-align: center;
+}
+
+.g_signin_container > * {
+    width: 100%;
+    height: auto;
+}
+
   
 @keyframes spin {
 0% { transform: rotate(0deg); }

@@ -29,6 +29,7 @@
     "google-auth-library": "^8.6.0",
     "hbs": "^4.2.0",
     "jsonwebtoken": "^8.5.1",
+    "just-validate": "^3.8.1",
     "mocha": "^10.0.0",
     "mysql": "^2.18.1",
     "nodemon": "^2.0.20"

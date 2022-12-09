@@ -5,98 +5,119 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/css/style.css">
+    <script src="https://unpkg.com/just-validate@latest/dist/just-validate.production.min.js"></script>
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
     <title>Register New User</title>
 </head>
 <body id="register-body">
-    <nav>
-        <ul>
-            {{#if admin}}
-            <li><a href="/admin">Admin</a></li>
-            <li><a href="/home">Home</a></li>
-            {{else}}
-            <li><a href="/home">Home</a></li>
-            {{/if}}
-            {{#if user}}
-            <li><a href="/auth/profile">Profile</a></li>
-            <li><a href="/auth/logout">Logout</a></li>
-            {{else}}
-            <li><a href="/auth/register">Sign Up</a></li>
-            <li><a href="/login">Login</a></li>
-            {{/if}}
-            
-        </ul>
-    </nav>
+    <div class="container">
+        <nav>
+            <ul>
+                {{#if admin}}
+                <li><a href="/admin">Admin</a></li>
+                <li><a href="/home">Home</a></li>
+                {{else}}
+                <li><a href="/home">Home</a></li>
+                {{/if}}
+                {{#if user}}
+                <li><a href="/auth/profile">Profile</a></li>
+                <li><a href="/auth/logout">Logout</a></li>
+                {{else}}
+                <li><a href="/auth/register">Sign Up</a></li>
+                <li><a href="/login">Login</a></li>
+                {{/if}}
+                
+            </ul>
+        </nav>
+    </div>
     <hr>
     
     <main>
-        <h1>Sign Up Page</h1>
-        {{#if message}}
-            <h4 style="color:red;">{{messageFail}}</h4>
-            <h4 style="color:green;">{{messageSuccess}}</h4>
-        {{/if}}
-        <p><span class="required">*</span>Required</p>
-        <form action="/auth/register" method="POST">
-            <label for="email"><span class="required">*</span>Email</label>
-            <input type="text" id="email" name="email" placeholder="type email here" required="required">
-            <br>
-            <label for="username"><span class="required">*</span>Username</label>
-            <input type="text" id="username" name="username" placeholder="type desired username" required="required">
-            <br>
-            <label for="password"><span class="required">*</span>Password</label>
-            <input type="text" id="password" name="password" placeholder="must be longer than 8 characters" required="required">
-            <br>
-            <label for="passwordConfirm"><span class="required">*</span>Confirm Password</label>
-            <input type="text" id="confirmPassword" name="confirmPassword" placeholder="must match password above" required="required">
-            <br>
-            <label for="firstName"><span class="required">*</span>First Name</label>
-            <input type="text" id="firstName" name="firstName" placeholder="enter your first name" required="required">
-            <br>
-            <label for="lastName"><span class="required">*</span>Last Name</label>
-            <input type="text" id="lastName" name="lastName" placeholder="enter your last name" required="required">
-            <br>
-            <label for="birthdate"><span class="required">*</span>Birthdate</label>
-            <input type="date" id="birthdate" name="birthdate" placeholder="select your date of birth" required="required">
-            <br>
+        <div class="form-container">
+            {{#if message}}
+                <h4 style="color:red;">{{messageFail}}</h4>
+                <h4 style="color:green;">{{messageSuccess}}</h4>
+            {{/if}}
+            <div class="form-card">
+                <h1>Register New Account</h1>
+                <form action="/auth/register" method="POST">
 
-            <label for="favoriteTeam">Favorite Team</label>
-            <select id="favoriteTeam" name="favoriteTeam">
-                <option value="arizona-cardinals">Arizona Cardinals</option>
-                <option value="atlanta-falcons">Atlanta Falcons</option>
-                <option value="baltimore-ravens">Baltimore Ravens</option>
-                <option value="buffalo-bills">Buffalo Bills</option>
-                <option value="carolina-panthers">Carolina Panthers</option>
-                <option value="chicago-bears">Chicago Bears</option>
-                <option value="cincinnati-bengals">Cincinnati Bengals</option>
-                <option value="cleveland-browns">Cleveland Browns</option>
-                <option value="dallas-cowboys">Dallas Cowboys</option>
-                <option value="denver-broncos">Denver Broncos</option>
-                <option value="detroit-lions">Detroit Lions</option>
-                <option value="green-bay-packers">Green Bay Packers</option>
-                <option value="houston-texans">Houston Texans</option>
-                <option value="indianapolis-colts">Indianapolis Colts</option>
-                <option value="jacksonville-jaguars">Jacksonville Jaguars</option>
-                <option value="kansas-city-chiefs">Kansas City Chiefs</option>
-                <option value="las-vegas-raiders">Las Vegas Raiders</option>
-                <option value="los-angeles-chargers">Los Angeles Chargers</option>
-                <option value="los-angeles-rams">Los Angeles Rams</option>
-                <option value="miami-dolphins">Miami Dolphins</option>
-                <option value="minnesota-vikings">Minnesota Vikings</option>
-                <option value="new-england-patriots">New England Patriots</option>
-                <option value="new-orleans-saints">New Orleans Saints</option>
-                <option value="new-york-giants">New York Giants</option>
-                <option value="new-york-jets">New York Jets</option>
-                <option value="philadelphia-eagles">Philadelphia Eagles</option>
-                <option value="pittsburgh-steelers">Pittsburgh Steelers</option>
-                <option value="san-francisco-49ers">San Francisco 49ers</option>
-                <option value="seattle-seahawks">Seattle Seahawks</option>
-                <option value="tampa-bay-buccaneers">Tampa Bay Buccaneers</option>
-                <option value="tennessee-titans">Tennessee Titans</option>
-                <option value="washington-commanders">Washington Commanders</option>
-            </select>
-            <br>
+                    <div class="form-group">
+                        <input type="text" id="email" class="form-control" name="email" placeholder="email" required="required">
+                    </div>
 
-            <button type="submit">Register</button>
-        </form>
+                    <div class="form-group">
+                        <input type="text" id="password" class="form-control" name="password" placeholder="password" required="required">
+                    </div>
+
+                    <div class="form-group">
+                        <input type="text" id="confirmPassword" class="form-control" name="confirmPassword" placeholder="confirm password" required="required">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="favoriteTeam">Favorite Team</label>
+                        <select id="favoriteTeam" name="favoriteTeam">
+                            <option value="arizona-cardinals">Arizona Cardinals</option>
+                            <option value="atlanta-falcons">Atlanta Falcons</option>
+                            <option value="baltimore-ravens">Baltimore Ravens</option>
+                            <option value="buffalo-bills">Buffalo Bills</option>
+                            <option value="carolina-panthers">Carolina Panthers</option>
+                            <option value="chicago-bears">Chicago Bears</option>
+                            <option value="cincinnati-bengals">Cincinnati Bengals</option>
+                            <option value="cleveland-browns">Cleveland Browns</option>
+                            <option value="dallas-cowboys">Dallas Cowboys</option>
+                            <option value="denver-broncos">Denver Broncos</option>
+                            <option value="detroit-lions">Detroit Lions</option>
+                            <option value="green-bay-packers">Green Bay Packers</option>
+                            <option value="houston-texans">Houston Texans</option>
+                            <option value="indianapolis-colts">Indianapolis Colts</option>
+                            <option value="jacksonville-jaguars">Jacksonville Jaguars</option>
+                            <option value="kansas-city-chiefs">Kansas City Chiefs</option>
+                            <option value="las-vegas-raiders">Las Vegas Raiders</option>
+                            <option value="los-angeles-chargers">Los Angeles Chargers</option>
+                            <option value="los-angeles-rams">Los Angeles Rams</option>
+                            <option value="miami-dolphins">Miami Dolphins</option>
+                            <option value="minnesota-vikings">Minnesota Vikings</option>
+                            <option value="new-england-patriots">New England Patriots</option>
+                            <option value="new-orleans-saints">New Orleans Saints</option>
+                            <option value="new-york-giants">New York Giants</option>
+                            <option value="new-york-jets">New York Jets</option>
+                            <option value="philadelphia-eagles">Philadelphia Eagles</option>
+                            <option value="pittsburgh-steelers">Pittsburgh Steelers</option>
+                            <option value="san-francisco-49ers">San Francisco 49ers</option>
+                            <option value="seattle-seahawks">Seattle Seahawks</option>
+                            <option value="tampa-bay-buccaneers">Tampa Bay Buccaneers</option>
+                            <option value="tennessee-titans">Tennessee Titans</option>
+                            <option value="washington-commanders">Washington Commanders</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <button type="submit">Register</button>
+                    </div>
+
+                    <div class="g_signin_container">
+                        <h3>-OR-</h3>
+                        <div id="g_id_onload"
+                            data-client_id="116240850493-sg7e4m7oigk1hmik8uee0ikrojshu6t6.apps.googleusercontent.com"
+                            data-login_uri="http://localhost:3000/auth/login"
+                            data-context="signin"
+                            data-auto_prompt="false"
+                            data-itp-support="true">
+                        </div>
+                        <div class="g_id_signin"
+                            data-type="standard"
+                            data-size="large"
+                            data-theme="outline"
+                            data-text="continue_with"
+                            data-shape="circular"
+                            data-logo_alignment="center">
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
     </main>
 
 </body>

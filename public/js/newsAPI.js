@@ -87,7 +87,7 @@ const getNewsResults = (division, teamName, color1, color2) => {
     console.log("GET initiated");
     //console.log(response.data);
 
-    //Add new results set to array
+    //Add new result-set to array
     articleObject.push(response.data);
     console.log(response.data);
 
@@ -120,9 +120,15 @@ const buildResultsSection = (division, teamName, color1, color2) => {
     var colorSecondary = "#" + color2;
     console.log(colorSecondary);
 
-    const mainContainer = document.getElementById('news-container');
+
+    //find the main element
     const main = document.getElementById('main');
     main.style.backgroundColor = colorSecondary;
+
+    //Build .main-container for all news card
+    const mainContainer = document.createElement('div');
+    mainContainer.setAttribute('id', 'news-container');
+    main.appendChild(mainContainer);
     
 
 
@@ -161,14 +167,14 @@ const buildResultsSection = (division, teamName, color1, color2) => {
             thumbnail.classList.add('news-card-thumbnail');
             thumbnail.src = `${itemObject.thumbnail}`;
         
-            //Create p "context" element
-            context = document.createElement('p');
-            context.innerHTML = `${itemObject.pubDate}`;
+            //Create p "publish date" element
+            pubDate = document.createElement('p');
+            pubDate.innerHTML = `${itemObject.pubDate}`;
         
             //Append h2 and p elements to .news-card Div
             newsCard.appendChild(title);
             newsCard.appendChild(thumbnail);
-            newsCard.appendChild(context);
+            newsCard.appendChild(pubDate);
 
         
             //Append .news-card Div to the main container div
@@ -176,9 +182,9 @@ const buildResultsSection = (division, teamName, color1, color2) => {
 
         }
     //Remove loading bar once results section is built
-    const mainDiv = document.getElementById('main');
+    
     const loader = document.querySelector('.loader');
-    mainDiv.removeChild(loader);
+    main.removeChild(loader);
 
 }
 
@@ -203,7 +209,7 @@ if (userFavoriteTeam && searchAll == false) {
     getNewsResults();
 }
 
-//Initiate GET for NFL news if 'search all news' button is pressed
+//Initiate GET for NFL news if ALL/AFC/NFC buttons are pressed
 searchAllButton.addEventListener('click', () => {
     searchAll = true;
     cleanResults();

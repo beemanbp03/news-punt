@@ -5,7 +5,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/css/style.css">
-        <script src="https://accounts.google.com/gsi/client" async defer></script>
+    <script src="https://unpkg.com/just-validate@latest/dist/just-validate.production.min.js"></script>
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
     <title>Sign In</title>
 </head>
 <body id="login-body">
@@ -29,44 +30,56 @@
     </nav>
     <hr>
     <main>
-    <h1>Sign In</h1>
+    <div class="form-container">
         {{#if message}}
             <h4 style="color:red;">{{messageFail}}</h4>
             <h4 style="color:green;">{{messageSuccess}}</h4>
         {{/if}}
-        <form action="/auth/login" method="POST">
+        <div class="form-card">
+            <h1>Sign In</h1>
 
-            <label for="username">Username</label>
-            <input type="text" id="username" name="username" >
-            <br>
-            <label for="password">Password</label>
-            <input type="password" id="password" name="password" ><input type="checkbox" onclick="showPassword()">Show Password
-            <br>
-            <button type="submit">Sign In</button>
-            <label>
-                <input type="checkbox" checked="checked" name="remember"> Remember me
-            </label>
-            
-        </form>
-        <script src="/js/visibility.js"></script>
+            <form action="/auth/login" method="POST">
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input type="text" id="username" name="username" >
+                </div>
 
-        <br>
-        <hr>
-        <div id="g_id_onload"
-            data-client_id="116240850493-sg7e4m7oigk1hmik8uee0ikrojshu6t6.apps.googleusercontent.com"
-            data-login_uri="http://localhost:3000/auth/login"
-            data-context="signin"
-            data-auto_prompt="true"
-            data-itp-support="true">
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" >
+                    <input type="checkbox" onclick="showPassword()"> <span style="font-size: 15px;">Show Password</span>
+                </div>
+
+                <div class="form-group">
+                    <button type="submit">Sign In</button>
+                    <label>
+                        <input type="checkbox" checked="checked" name="remember"> Remember me
+                    </label>
+                </div>
+            </form>
+            <script src="/js/visibility.js"></script>
+
+            <div class="g_signin_container">
+                <h3>-OR-</h3>
+                <div id="g_id_onload"
+                    data-client_id="116240850493-sg7e4m7oigk1hmik8uee0ikrojshu6t6.apps.googleusercontent.com"
+                    data-login_uri="http://localhost:3000/auth/login"
+                    data-context="signin"
+                    data-auto_prompt="false"
+                    data-itp-support="true">
+                </div>
+                <div class="g_id_signin"
+                    data-type="standard"
+                    data-size="large"
+                    data-theme="outline"
+                    data-text="continue_with"
+                    data-shape="circular"
+                    data-logo_alignment="center">
+                </div>
+            </div>
         </div>
-        <div class="g_id_signin"
-            data-type="standard"
-            data-size="large"
-            data-theme="outline"
-            data-text="sign_in_with"
-            data-shape="rectangular"
-            data-logo_alignment="left">
-        </div>
+    </div>
+
     </main>
 </body>
 </html>
