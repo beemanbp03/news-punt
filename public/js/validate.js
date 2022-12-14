@@ -23,7 +23,7 @@ if (registerValidation) {
         },
         {
             rule: 'strongPassword',
-            errorMessage: "Minimum eight characters, at least one uppercase letter, one lowercase letter, one number and one special character"
+            errorMessage: "Minimum eight characters, at least one uppercase letter, one lowercase letter, one number and one special character",
         }
     ])
     .addField('#confirmPassword', [
@@ -49,7 +49,7 @@ if (registerValidation) {
     ])
     .onSuccess((event) => {
         console.log("Validation Sucessfull, submitting register form");
-        document.getElementById('registerForm').submit();
+        document.getElementById('formRegistration').submit();
     })
 }
 
@@ -79,6 +79,6 @@ if (loginValidation) {
     ])
     .onSuccess((event) => {
         console.log("Validation Successfull, submitting login form")
-        document.getElementById('loginForm').submit();
+        document.getElementById('formLogin').submit();
     });
 }

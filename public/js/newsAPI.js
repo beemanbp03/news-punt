@@ -4,9 +4,13 @@ const articleObject = [];
 const articleLimit = 100;
 const buttonsToDisable = document.querySelectorAll('.team-logo');
 const searchButtons = document.querySelectorAll('.searchButtons');
+
+//used to check if base endpoint should be used
 var searchAll = false;
 
 /* 
+    handleSelectTeam
+
     This function runs once a team logo has been clicked on the slider created in index.js, cleans
     any existing results off the screen, and then gets new results by passing the function's parameter "teamName"
     through the getNewsResults function
@@ -19,7 +23,9 @@ const handleSelectTeam = (division, teamName, color1, color2) => {
     colorizeButtons(color1, color2);
 }
 
-/*
+/*  
+    cleanResults
+
     this function removes the existing object in the articleObject array,
     grabs the div containing all results, then removes it if it exists
 */
@@ -42,8 +48,9 @@ const cleanResults = () => {
 }
 
 /*
-    This function uses Axios GET to retrieve the selected team's news from the api
+    getNewsResults
 
+    This function uses Axios GET to retrieve the selected team's news from the api
     source: rapidAPI ()
 */
 const getNewsResults = (division, teamName, color1, color2) => {

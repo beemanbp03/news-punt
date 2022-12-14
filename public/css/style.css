@@ -136,17 +136,24 @@ body {
 .form-container {
     display: flex;
     flex-direction: row;
-    flex-wrap: wrap;
     justify-content: center;
+    flex-wrap: wrap;
     width: 100%;
     height: auto;
     /*border: 2px solid blue;*/
+}
+
+input[type="text"], input[type="password"] {
+    padding-top: 10px;
+    padding-bottom: 10px;
 }
 
 .form-card {
     background-color: white;
     border-radius: 1em;
     margin: 0.50em;
+    width: 30%;
+    max-width: 30%;
     padding: 0.25em 1em 0.25em 1em;
     box-shadow: 0px 5px 10px lightgrey;
 }
@@ -173,6 +180,7 @@ body {
 
 .form-group button {
     background-color: blue;
+    width: 100%;
     color: white;
     border: none;
     height: 2.5em;

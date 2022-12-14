@@ -44,21 +44,19 @@
 
             <form action="/auth/login" method="POST" id="loginForm">
                 <div class="form-group">
-                    <label for="email">Email</label>
-                    <input type="text" id="email" name="email" >
+                    <input type="text" id="email" name="email" placeholder="email">
                 </div>
 
                 <div class="form-group">
-                    <label for="password">Password</label>
-                    <input type="password" id="password" name="password" >
+                    <input type="password" id="password" name="password" placeholder="password">
                     <input type="checkbox" onclick="showPassword()"> <span style="font-size: 15px;">Show Password</span>
                 </div>
 
                 <div class="form-group">
                     <button type="submit">Sign In</button>
-                    <label>
+                    <!--<label>
                         <input type="checkbox" checked="checked" name="remember"> Remember me
-                    </label>
+                    </label>-->
                 </div>
             </form>
             <script src="/js/visibility.js"></script>
