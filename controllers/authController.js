@@ -20,25 +20,13 @@ exports.register = async (req, res) => {
     //res.send("Trying to submit form...");
 
    const {
-        username, 
+        email, 
         password, 
         confirmPassword,
-        firstName,
-        lastName,
-        email,
-        birthdate,
-        phone,
-        street,
-        unitNumber,
-        city,
-        zip,
-        country,
         favoriteTeam 
     } = req.body;
 
-    const phoneEnabled = 0;
-    const address = '{"street": "' + street + '", "unitNumber": "' + unitNumber + '", "city": "' + city + '", "zip": "' + zip + '", "country": "' + country + '"}';
-    const favoriteTeams = '{"TeamName":"' + favoriteTeam + '"}'
+    const favoriteTeams = '{"TeamName":"' + favoriteTeam + '"}';
 
 
     let emailResults = await db.dbQuery("SELECT email FROM `news-punt-db-test`.user WHERE Email = ?", [email], (error, results) => {
@@ -49,20 +37,10 @@ exports.register = async (req, res) => {
         }
     });
 
-    let usernameResults = await db.dbQuery("SELECT username FROM `news-punt-db-test`.user WHERE Username = ?", [username], (error, results) => {
-
-    });
-
     if (emailResults.length > 0) {
         return res.render('register', {
             message: true,
-            messageFail: 'That email is already in use',
-            messageSuccess: ''
-        });
-    } else if (usernameResults.length > 0) {
-        return res.render('register', {
-            message: true,
-            messageFail: 'That username is already in use',
+            messageFail: emailResults[0].email + ' is already in use',
             messageSuccess: ''
         });
     } else if ( password !== confirmPassword) {
@@ -76,7 +54,7 @@ exports.register = async (req, res) => {
     let hashedPassword = await bcrypt.hash(password, 8);
 
     //INSERT NEW USER INTO DATABASE
-    let insertResults = await db.dbQuery("INSERT INTO `news-punt-db-test`.user SET ?", {Username: username, Password: hashedPassword, FirstName: firstName, LastName: lastName, Email: email, Birthdate: birthdate, Phone: phone, Address: address, PhoneEnabled: phoneEnabled, FavoriteTeams: favoriteTeams});
+    let insertResults = await db.dbQuery("INSERT INTO `news-punt-db-test`.user SET ?", {Email: email, Password: hashedPassword, FavoriteTeams: favoriteTeams});
     if (insertResults) {
         res.render('register', {
             message: true,
@@ -174,16 +152,16 @@ exports.login = async (req, res) => {
             res.status(200).redirect("/home");
         } else {
         //Traditional Sign-in*******************
-                const { username, password } = req.body;
-                if (!username || !password) {
+                const { email, password } = req.body;
+                if (!email || !password) {
                      return res.status(400).render('login', {
                         message: true,
-                        messageFail: 'Please provide a username and password',
+                        messageFail: 'Please provide a email and password',
                         messageSuccess: ''
                      });
                 }
         
-                let loginResults = await db.dbQuery('SELECT * FROM `news-punt-db-test`.user WHERE Username = ?', [username]);
+                let loginResults = await db.dbQuery('SELECT * FROM `news-punt-db-test`.user WHERE Email = ?', [email]);
                 //Check Failed login due to incorrect info
                 if (!loginResults || !(await bcrypt.compare(password, loginResults[0].Password))) {
                     console.log("USERNAME PASSWORD CHECK FAILED");

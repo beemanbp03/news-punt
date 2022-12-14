@@ -41,10 +41,10 @@
         <h1>Profile</h1>
         <br>
 
-        <h4>{{user.Username}}'s Information</h4>
-        <p>First Name: {{user.FirstName}}</p>
+        <h4>Profile for email - {{user.Email}}</h4>
+        <!--<p>First Name: {{user.FirstName}}</p>
         <p>Last Name: {{user.LastName}}</p>
-        <!-- <p>Phone: {{user.Phone}}</p> -->
+        <p>Phone: {{user.Phone}}</p> -->
         <p id="team-name">Favorite Team: {{user.FavoriteTeams.TeamName}}</p>
         
 
@@ -55,7 +55,7 @@
             <h4 style="color:green;">{{messageSuccess}}</h4>
         {{/if}}
         <form action="/auth/profile" method="POST">
-            <label for="email"><span class="required">*</span>Email</label>
+            <label for="email">Email</label>
             <input type="text" id="email" name="email" value={{user.Email}} required="required">
             <br>
             <!--
@@ -65,13 +65,13 @@
             <label for="passwordConfirm"><span class="required">*</span>Confirm Password</label>
             <input type="text" id="confirmPassword" name="confirmPassword" placeholder="*******" required="required">
             <br>
-            -->
             <label for="firstName"><span class="required">*</span>First Name</label>
             <input type="text" id="firstName" name="firstName" value={{user.FirstName}} required="required">
             <br>
             <label for="lastName"><span class="required">*</span>Last Name</label>
             <input type="text" id="lastName" name="lastName" value={{user.LastName}} required="required">
             <br>
+            -->
             
             <!--
             <label for="phone">Phone Number</label>

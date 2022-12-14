@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="/css/style.css">
     <script src="https://unpkg.com/just-validate@latest/dist/just-validate.production.min.js"></script>
     <script src="https://accounts.google.com/gsi/client" async defer></script>
+    <script src="https://unpkg.com/just-validate@latest/dist/just-validate.production.min.js"></script>
     <title>Register New User</title>
 </head>
 <body id="register-body">
@@ -34,24 +35,26 @@
     
     <main>
         <div class="form-container">
-            {{#if message}}
-                <h4 style="color:red;">{{messageFail}}</h4>
-                <h4 style="color:green;">{{messageSuccess}}</h4>
-            {{/if}}
             <div class="form-card">
                 <h1>Register New Account</h1>
-                <form action="/auth/register" method="POST">
+                {{#if message}}
+                    <p style="color:red;">{{messageFail}}</p>
+                    <p style="color:green;">{{messageSuccess}}</p>
+                {{/if}}
+                <form action="/auth/register" method="POST" id="registerForm">
 
                     <div class="form-group">
-                        <input type="text" id="email" class="form-control" name="email" placeholder="email" required="required">
+                        <input type="text" id="email" class="form-control" name="email" placeholder="email">
                     </div>
 
                     <div class="form-group">
-                        <input type="text" id="password" class="form-control" name="password" placeholder="password" required="required">
+                        <input type="password" id="password" class="form-control" name="password" placeholder="password">
+                        <input type="checkbox" onclick="showPassword()"> <span style="font-size: 15px;">Show Password</span>
                     </div>
 
                     <div class="form-group">
-                        <input type="text" id="confirmPassword" class="form-control" name="confirmPassword" placeholder="confirm password" required="required">
+                        <input type="password" id="confirmPassword" class="form-control" name="confirmPassword" placeholder="confirm password">
+                        <input type="checkbox" onclick="showPassword()"> <span style="font-size: 15px;">Show Password</span>
                     </div>
 
                     <div class="form-group">
@@ -93,7 +96,7 @@
                     </div>
 
                     <div class="form-group">
-                        <button type="submit">Register</button>
+                        <button type="submit" id="registerButton">Register</button>
                     </div>
 
                     <div class="g_signin_container">
@@ -115,6 +118,8 @@
                         </div>
                     </div>
                 </form>
+                <script src="/js/visibility.js"></script>
+                <script src="/js/validate.js"></script>
             </div>
         </div>
 
