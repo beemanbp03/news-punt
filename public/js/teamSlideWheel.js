@@ -216,7 +216,7 @@ const prevButton = document.createElement('button');
 const allNewsButton = document.createElement('button');
 const afcNewsButton = document.createElement('button');
 const nfcNewsButton = document.createElement('button');
-buttonDiv.setAttribute('id', 'btns');
+buttonDiv.setAttribute('id', 'btns-slide-wheel');
 nextButton.setAttribute('class', 'btn btn-next');
 prevButton.setAttribute('class', 'btn btn-prev');
 allNewsButton.setAttribute('class', 'btn-all-news');

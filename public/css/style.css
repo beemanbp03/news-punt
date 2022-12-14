@@ -5,12 +5,12 @@ body {
     font-size: 90%;
 }
 
-
-#btns {
+#btns-slide-wheel {
     display: flex;
     flex-direction: row;
     justify-content: center;
     text-align: center;
+    flex-wrap: wrap;
 }
 
 
@@ -18,6 +18,20 @@ body {
     margin: 1em;
     position: relative;
     overflow: hidden;
+}
+
+#searchButtonsContainer {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.searchButtons {
+    width: 100%;
+    height: 5em;
+    border-radius: 2em;
+    margin-top: 1em;
 }
 
 /* container of .team */
@@ -171,7 +185,7 @@ body {
     height: 2.5em;
 }
 
-.container {
+.nav-container {
     width: 100%;
 }
 
@@ -199,7 +213,28 @@ body {
 /* Medium devices (landscape tablets, 768px and up) */
 @media only screen and (min-width: 768px) {
     .news-card {
-        max-width: 45%;
+        max-width: 35%;
+    }
+
+    /*body{color: green;}*/
+    .form-card {margin-top: 2em;}
+
+    #searchButtonsContainer {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-around;
+    }
+    
+    .searchButtons {
+        width: 30%;
+        height: 5em;
+        border-radius: 2em;
+        transition: all .2s ease-in;
+    }
+
+    .searchButtons:hover {
+        transform: scale(1.15);
     }
 }
 
@@ -208,11 +243,18 @@ body {
     .news-card {
         max-width: 25%;
     }
+
+    /*body {color: red;}*/
+    .form-card {margin-top: 2em;}
 }
+
 
 /* Extra large devices (large laptops and desktops, 1200px and up) */
 @media only screen and (min-width: 1200px) {
     .news-card {
-        max-width: 25%;
+        max-width: 20%;
     }
+
+    /*body {color: blue;}*/
+    .form-card {margin-top: 5em;}
 }

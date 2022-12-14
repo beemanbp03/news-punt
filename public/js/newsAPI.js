@@ -3,9 +3,7 @@ console.log("USER: " + userFavoriteTeam);
 const articleObject = [];
 const articleLimit = 100;
 const buttonsToDisable = document.querySelectorAll('.team-logo');
-const searchAllButton = document.getElementById('searchAll');
-const searchAfcButton = document.getElementById('searchAfc');
-const searchNfcButton = document.getElementById('searchNfc');
+const searchButtons = document.querySelectorAll('.searchButtons');
 var searchAll = false;
 
 /* 
@@ -18,6 +16,7 @@ const handleSelectTeam = (division, teamName, color1, color2) => {
     console.log("Running handleSelectTeam method...");
     cleanResults();
     getNewsResults(division, teamName, color1, color2);
+    colorizeButtons(color1, color2);
 }
 
 /*
@@ -188,6 +187,7 @@ const buildResultsSection = (division, teamName, color1, color2) => {
 
 }
 
+// CAPITALIZE Team Name
 const makeTeamNameCapitalized = teamName => {
     let teamNameArray = teamName.split("-");
     let result = '';
@@ -201,6 +201,20 @@ const makeTeamNameCapitalized = teamName => {
     return result.trim();
 }
 
+//COLORIZE buttons
+const colorizeButtons = (color1, color2) => {
+    //grab ALL/AFC/NFC buttons
+    var colorMain = "#" + color1 ;
+    var colorSecondary = "#" + color2;
+    searchButtons.forEach(item => {
+        item.style.backgroundColor = colorSecondary;
+        item.style.color = colorMain;
+        item.style.borderStyle = "solid"
+        item.style.borderColor = colorMain;
+    });
+
+}
+
 
 //Initiated the GET for NFL news when paige loads
 if (userFavoriteTeam && searchAll == false) {
@@ -210,26 +224,35 @@ if (userFavoriteTeam && searchAll == false) {
 }
 
 //Initiate GET for NFL news if ALL/AFC/NFC buttons are pressed
-searchAllButton.addEventListener('click', () => {
-    searchAll = true;
-    cleanResults();
-    const main = document.getElementById('main');
-    main.style.backgroundColor = "#F7F7F7";
-    getNewsResults();
-    console.log("searchAll = " + searchAll);
-});
+searchButtons.forEach(item => {
+    item.addEventListener('click', () => {
+        const main = document.getElementById('main');
+        main.style.backgroundColor = "#F7F7F7";
+    
+        searchAll = true
+    
+        searchButtons.forEach(item => {
+            item.style.backgroundColor = "#F7F7F7";
+            item.style.color = "black";
+            item.style.borderColor = "black";
+            item.style.borderStyle = "solid";
+        });
+    
+        cleanResults();
+        if (item.id == "searchAll") {
+            console.log("calling SearchAll");
+            searchAll = true;
+            getNewsResults();   
+        } else if (item.id == "searchNfc") {
+            console.log("calling searchNFC");
+            searchAll = false;
+            getNewsResults("nfc", "NFC", "null", "null");
+        } else if (item.id == "searchAfc") {
+            console.log("calling searchAFC");
+            searchAll = false;
+            getNewsResults('afc', 'AFC', 'null', 'null');
+        }
+    });
+})
 
-searchAfcButton.addEventListener('click', () => {
-    cleanResults();
-    const main = document.getElementById('main');
-    main.style.backgroundColor = "#F7F7F7";
-    getNewsResults("afc", "AFC", "null", "null");
-});
-
-searchNfcButton.addEventListener('click', () => {
-    cleanResults();
-    const main = document.getElementById('main');
-    main.style.backgroundColor = "#F7F7F7";
-    getNewsResults("nfc", "NFC", "null", "null");
-});
 
