@@ -49,7 +49,7 @@ if (registerValidation) {
     ])
     .onSuccess((event) => {
         console.log("Validation Sucessfull, submitting register form");
-        document.getElementById('formRegistration').submit();
+        document.getElementById('registerForm').submit();
     })
 }
 
@@ -79,6 +79,6 @@ if (loginValidation) {
     ])
     .onSuccess((event) => {
         console.log("Validation Successfull, submitting login form")
-        document.getElementById('formLogin').submit();
+        document.getElementById('loginForm').submit();
     });
 }
