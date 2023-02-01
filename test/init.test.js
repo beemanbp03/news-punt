@@ -5,15 +5,50 @@ const test = 1;
 const assert = chai.assert;
 const expect = chai.expect;
 
+const mysql = require('mysql');
+const env = require('dotenv');
+env.config({ path: './.env' });
+
+//CONNECT test
+describe('CONNECT test', () => {
+   it ('connect', async () => {
+      var config = {
+         host: process.env.DB_HOST,
+         user: process.env.DB_USER,
+         password: process.env.DB_PASSWORD,
+         name: process.env.DB_NAME,
+         port: process.env.DB_PORT
+     }
+
+     //Create Database Connection
+     const database = mysql.createConnection(config);
+     console.log(database);
+     
+     database.query("SELECT * FROM `heroku_ae5ca559b978129`.user", (err, rows) => {
+      if (err) {
+         console.log(err);
+         
+     } else {
+         //console.log("Results inside dbController" + JSON.stringify(rows));
+         console.log(rows);
+     }
+   });
+   database.end();
+
+   });
+
+})
+
 //SELECT tests
 describe('SELECT tests', () => {
    beforeEach (async () => {
-      await db.dbQuery('TRUNCATE TABLE `news-punt-db-test`.user');
+      await db.dbQuery('TRUNCATE TABLE `news-punt-db`.user');
       await db.dbQuery("INSERT INTO `news-punt-db-test`.user (LastName, Firstname, Username, Password, Email, Birthdate, Phone, Address, PhoneEnabled, FavoriteTeams, FavoritePlayers) VALUES('Beeman', 'Boulder', 'beemanbp03', 'root', 'boulder@gmail.com', '1992-12-12', null, null, 0, null, null);");
       await db.dbQuery("INSERT INTO `news-punt-db-test`.user (LastName, Firstname, Username, Password, Email, Birthdate, Phone, Address, PhoneEnabled, FavoriteTeams, FavoritePlayers) VALUES('Smith', 'Mike', 'SmithM12', 'delikad', 'mikesmith@email.com', '1987-09-24', '(865)653-3423', null, 1, null, null);");
       await db.dbQuery("INSERT INTO `news-punt-db-test`.user (LastName, Firstname, Username, Password, Email, Birthdate, Phone, Address, PhoneEnabled, FavoriteTeams, FavoritePlayers) VALUES('Johnson', 'Claire', 'JohnsonC23', 'RosesAreRed', 'johnsonc@email.com', '1999-04-15', '(865)653-6534', null, 0, null, null);");
       //await db.dbQuery("INSERT INTO `news-punt-db-test`.user (LastName, Firstname, Username, Password, Email, Birthdate, Phone, Address, PhoneEnabled, FavoriteTeams, FavoritePlayers) VALUES('Mike', 'Smith', 'smithMike', 'smith33452', 'smith@email.com', '1974-03-02', '(123)456-7890', '[{'street':'124 Willow ave','unitNumber':'320','city':'Madison', 'zip':'53704','country':'United States'}]', 1, [{'teams':'['green-bay-packers']', 'players':'['Devonta Adams']}]);");
    });
+
    it ('Should SELECT * FROM user', async () => {
       // https://devdotcode.com/interact-with-mysql-database-using-async-await-promises-in-node-js/
       
