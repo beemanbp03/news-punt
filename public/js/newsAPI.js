@@ -17,7 +17,7 @@ var searchAll = false;
 */
 const handleSelectTeam = (division, teamName, color1, color2) => {
     searchAll = false;
-    console.log("Running handleSelectTeam method...");
+    //console.log("Running handleSelectTeam method...");
     cleanResults();
     getNewsResults(division, teamName, color1, color2);
     colorizeButtons(color1, color2);
@@ -55,7 +55,7 @@ const cleanResults = () => {
 */
 const getNewsResults = (division, teamName, color1, color2) => {
     var options = {};
-    console.log("inside getNewsResults");
+    //console.log("inside getNewsResults");
     if (teamName) {
         if (teamName === "AFC" || teamName === "NFC") {
             options = {
@@ -77,7 +77,7 @@ const getNewsResults = (division, teamName, color1, color2) => {
               };
         }
     } else {
-        console.log("inside getNewsResults.ALL");
+        //console.log("inside getNewsResults.ALL");
         options = {
             method: 'GET',
             url: `https://nfl-news-feed.p.rapidapi.com/news`,
@@ -90,14 +90,14 @@ const getNewsResults = (division, teamName, color1, color2) => {
 
     //Run the API search
     axios.request(options).then((response) => {
-    console.log("GET initiated");
+    //console.log("GET initiated");
     //console.log(response.data);
 
     //Add new result-set to array
     articleObject.push(response.data);
-    console.log(response.data);
+    //console.log(response.data);
 
-    //console.log("articleObject: " + articleObject);
+    console.log("articleObject: " + articleObject[0][0].title);
 
     //Call function to build the news results section on the page
     if (articleObject.length == 1) {
@@ -124,7 +124,7 @@ const getNewsResults = (division, teamName, color1, color2) => {
 const buildResultsSection = (division, teamName, color1, color2) => {
     var colorMain = "#" + color1 ;
     var colorSecondary = "#" + color2;
-    console.log(colorSecondary);
+    //console.log(colorSecondary);
 
 
     //find the main element
@@ -150,7 +150,7 @@ const buildResultsSection = (division, teamName, color1, color2) => {
 
     mainContainer.appendChild(resultsTeamTitle);
 
-
+        //console.log(articleObject[0]);
         //Article output loop
         for (var item in articleObject[0]) {
 
@@ -247,15 +247,15 @@ searchButtons.forEach(item => {
     
         cleanResults();
         if (item.id == "searchAll") {
-            console.log("calling SearchAll");
+            //console.log("calling SearchAll");
             searchAll = true;
             getNewsResults();   
         } else if (item.id == "searchNfc") {
-            console.log("calling searchNFC");
+            //console.log("calling searchNFC");
             searchAll = false;
             getNewsResults("nfc", "NFC", "null", "null");
         } else if (item.id == "searchAfc") {
-            console.log("calling searchAFC");
+            //console.log("calling searchAFC");
             searchAll = false;
             getNewsResults('afc', 'AFC', 'null', 'null');
         }

@@ -189,7 +189,7 @@ if (user) {
 //add nfl teams to #teamSlideWheel div
 nflTeamsArray.forEach(item => {
     item.teams.forEach(team => {
-    console.log(item.division);
+    //console.log(item.division);
 
     //team div
     var teamDiv = document.createElement('div');
@@ -202,7 +202,7 @@ nflTeamsArray.forEach(item => {
     teamLogo.setAttribute('onclick', `handleSelectTeam( "${item.division.toString()}", "${team.name.toString()}", "${team.colorCodes[0]}", "${team.colorCodes[1]}" )`);
     teamDiv.appendChild(teamLogo);
 
-    console.log("Division: " + item.division + ", Name: " + team.name + ", Color1: " + team.colorCodes[0] + ", Color2: " + team.colorCodes[1]);
+    //console.log("Division: " + item.division + ", Name: " + team.name + ", Color1: " + team.colorCodes[0] + ", Color2: " + team.colorCodes[1]);
 
     wheelDiv.appendChild(teamDiv);
     });
