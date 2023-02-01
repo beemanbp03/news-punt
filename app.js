@@ -2,6 +2,10 @@ const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const app = express();
+const env = require('dotenv');
+env.config({ path: './.env' });
+
+const port = process.env.HEROKU_PORT || 3000;
 
 //Config
 const publicDirectory = path.join(__dirname, './public'); console.log("app.js file location: " + __dirname);
@@ -21,6 +25,6 @@ app.set('view engine', 'hbs');
 
 
 //Start Server
-app.listen(8000,  () => {
-    console.log("Server started on port 3000");
+app.listen(port,  () => {
+    console.log("Server started on port " + port);
 });
