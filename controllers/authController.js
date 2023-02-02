@@ -174,7 +174,7 @@ exports.login = async (req, res) => {
                     const id = loginResults[0].idUser;
                     //Create Token
                     const tokenTraditional = jwt.sign({id: id}, `${process.env.JWT_SECRET}`, {
-                        expiresIn: `${process.env.JWT_EXPIRES_IN}`,
+                        expiresIn: "90d",
                     });
         
                     //Create Cookie Options
