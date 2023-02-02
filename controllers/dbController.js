@@ -28,6 +28,7 @@ exports.dbQuery = (query, queryVar) => {
 //Local function to connect with the database (params: {test}:boolean is the test or production database being used)
 dbConnect = () => {
     
+    
     var config = {
         host: process.env.DB_HOST,
         user: process.env.DB_USER,
@@ -37,7 +38,7 @@ dbConnect = () => {
     }
     
     //Create Database Connection
-    const db = mysql.createConnection(config);
+    const db = mysql.createConnection(process.env.CLEARDB_OLIVE_URL);
     //console.log(config.name);
     return db;
 }
