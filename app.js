@@ -2,8 +2,7 @@ const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const app = express();
-const env = require('dotenv');
-env.config({ path: './.env' });
+const env = require('dotenv').config({ path: './.env' });
 
 const port = process.env.PORT;
 

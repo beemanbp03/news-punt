@@ -4,3 +4,6 @@ node_modules
 
 # Enviornment Variables
 .env
+
+# Database files
+usersTable.csv

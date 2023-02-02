@@ -2,10 +2,9 @@ const db = require('./dbController');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 const crypto = require('crypto');
-const env = require('dotenv');
+const env = require('dotenv').config({ path: './.env' });
 const {promisify} = require('util');
-env.config({ path: './.env' });
-//const hmac = crypto.createHmac('sha256', process.env.JWT_SECRET);
+const hmac = crypto.createHmac('sha256', process.env.JWT_SECRET);
 
 //Google one-tap config
 const {OAuth2Client, IdTokenClient} = require('google-auth-library');
