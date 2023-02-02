@@ -178,9 +178,10 @@ exports.login = async (req, res) => {
                     });
         
                     //Create Cookie Options
+                    console.log(new Date(Date.now() + 10 * 10));
                     const cookieOptions = {
                         expires: new Date(
-                            Date.now() + process.env.JWT_COOKIE_EXPIRES * 24 * 60 * 60 * 1000
+                            Date.now() + process.env.JWT_COOKIE_EXPIRES * 24
                         ),
                         httpOnly: true
                     }
