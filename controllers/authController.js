@@ -139,7 +139,7 @@ exports.login = async (req, res) => {
             });
     
             //Create Cookie Options
-            var days = 90;
+            const days = 120;
             const cookieOptions = {
                 expires: new Date(new Date().getTime() + (days * 60000 * 60 * 24)),
                 httpOnly: true
