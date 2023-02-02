@@ -250,7 +250,7 @@ exports.isLoggedIn = async (req, res, next) => {
                 
                 // 4) Set the request's user as the user returned by the database
                 req.user = user[0];
-                if (user[0].Username == 'testUser') {
+                if (user[0].Email == `${process.env.ADMIN}`) {
                     req.admin = true;
                 } else {
                     req.admin = false;
