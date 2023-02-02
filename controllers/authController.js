@@ -181,7 +181,7 @@ exports.login = async (req, res) => {
                     var date = new Date(Date.now() + 90);
                     console.log(new Date(Date.now() + 10 * 10));
                     const cookieOptions = {
-                        expires: new Date(Date.now() + 90000),
+                        expires: new Date(Date.now() + 90 * 24 * 60),
                         httpOnly: true
                     }
         
