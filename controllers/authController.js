@@ -77,6 +77,7 @@ exports.editProfile = async (req, res) => {
         const tokenGoogle = jwt.sign(decoded, `${process.env.JWT_SECRET}`);
 
         //Create Cookie Options
+        const days = 120;
         const cookieOptions = {
             expires: new Date(new Date().getTime() + (days * 60000 * 60 * 24)),
             httpOnly: true
@@ -176,10 +177,6 @@ exports.login = async (req, res) => {
         
                     //Create Cookie Options
                     var days = 90;
-                    var date = new Date(new Date().getTime() + 60000);
-                    var dateOlder = new Date(new Date().getTime() + (days * 60000 * 60 * 24));
-                    console.log("date: " + date);
-                    console.log("dateOlder: " + dateOlder);
                     const cookieOptions = {
                         expires: new Date(new Date().getTime() + (days * 60000 * 60 * 24)),
                         httpOnly: true
