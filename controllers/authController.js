@@ -122,6 +122,8 @@ exports.login = async (req, res) => {
         console.log("Inside authController.login");
         const googleToken = req.body.credential;
 
+        console.log(req.body);
+
         //Google Sign-in************
         if (googleToken) {
             const payload = await googleAuthenticate(googleToken);

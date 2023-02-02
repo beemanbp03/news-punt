@@ -5,7 +5,7 @@ const app = express();
 const env = require('dotenv');
 env.config({ path: './.env' });
 
-const port = process.env.HEROKU_PORT || 3000;
+const port = process.env.HEROKU_PORT;
 
 //Config
 const publicDirectory = path.join(__dirname, './public'); console.log("app.js file location: " + __dirname);
