@@ -229,7 +229,7 @@ exports.isLoggedIn = async (req, res, next) => {
             if (req.cookies.jwt) {
     
                 // 1) Verify the token
-                const decoded = await promisify(jwt.verify)(req.cookies.jwt, process.env.JWT_SECRET);
+                const decoded = await promisify(jwt.verify)(req.cookies.jwt, `${process.env.JWT_SECRET}`);
                 //console.log(decoded);
     
                 // 2) Check if user still exists in database
