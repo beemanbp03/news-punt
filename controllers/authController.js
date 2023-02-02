@@ -68,19 +68,17 @@ exports.editProfile = async (req, res) => {
     console.log("Inside authController.editProfile");
     if (req.cookies.jwtGoogle) {
         //DECODE cookie
-        const decoded = await promisify(jwt.verify)(req.cookies.jwtGoogle, process.env.JWT_SECRET);
+        const decoded = await promisify(jwt.verify)(req.cookies.jwtGoogle, `${process.env.JWT_SECRET}`);
         
         //EDIT cookie
         decoded.FavoriteTeams.TeamName = req.body.favoriteTeam;
         
         //RE-SIGN cookie
-        const tokenGoogle = jwt.sign(decoded, process.env.JWT_SECRET);
+        const tokenGoogle = jwt.sign(decoded, `${process.env.JWT_SECRET}`);
 
         //Create Cookie Options
         const cookieOptions = {
-            expires: new Date(
-                Date.now() + process.env.JWT_COOKIE_EXPIRES * 24 * 60 * 60 * 1000
-            ),
+            expires: new Date(new Date().getTime() + (days * 60000 * 60 * 24)),
             httpOnly: true
         }
         //SET new cookie in the response
@@ -136,15 +134,13 @@ exports.login = async (req, res) => {
                 Picture: payload['picture'], 
                 FavoriteTeams: {TeamName: "arizona-cardinals"}
             };
-            const tokenGoogle = jwt.sign(payloadJWT, process.env.JWT_SECRET, {
-                expiresIn: process.env.JWT_EXPIRES_IN,
+            const tokenGoogle = jwt.sign(payloadJWT, `${process.env.JWT_SECRET}`, {
+                expiresIn: "90d",
             });
     
             //Create Cookie Options
             const cookieOptions = {
-                expires: new Date(
-                    Date.now() + process.env.JWT_COOKIE_EXPIRES * 24 * 60 * 60 * 1000
-                ),
+                expires: new Date(new Date().getTime() + (days * 60000 * 60 * 24)),
                 httpOnly: true
             }
     
@@ -217,7 +213,7 @@ exports.isLoggedIn = async (req, res, next) => {
         if (req.cookies.jwtGoogle) {
             
                 //Verify the Token
-                const decoded = await promisify(jwt.verify)(req.cookies.jwtGoogle, process.env.JWT_SECRET);
+                const decoded = await promisify(jwt.verify)(req.cookies.jwtGoogle, `${process.env.JWT_SECRET}`);
                 //SET the request user with the payload information 
                 req.user = decoded;
                 return next();
