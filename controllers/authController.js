@@ -5,7 +5,7 @@ const crypto = require('crypto');
 const env = require('dotenv');
 const {promisify} = require('util');
 env.config({ path: './.env' });
-const hmac = crypto.createHmac('sha256', `${process.env.JWT_SECRET}`);
+const hmac = crypto.createHmac('sha256', process.env.JWT_SECRET);
 
 //Google one-tap config
 const {OAuth2Client, IdTokenClient} = require('google-auth-library');
@@ -29,7 +29,7 @@ exports.register = async (req, res) => {
     const favoriteTeams = '{"TeamName":"' + favoriteTeam + '"}';
 
 
-    let emailResults = await db.dbQuery("SELECT email FROM `heroku_ae5ca559b978129`.user WHERE Email = ?", [email], (error, results) => {
+    let emailResults = await db.dbQuery("SELECT email FROM `heroku_7cae9308a1e2a42`.user WHERE Email = ?", [email], (error, results) => {
         console.log("Inside DBQUERY function");
         if (err) {
             console.log("Error SELECTing email from user: " + err);
@@ -54,7 +54,7 @@ exports.register = async (req, res) => {
     let hashedPassword = await bcrypt.hash(password, 8);
 
     //INSERT NEW USER INTO DATABASE
-    let insertResults = await db.dbQuery("INSERT INTO `heroku_ae5ca559b978129`.user SET ?", {Email: email, Password: hashedPassword, FavoriteTeams: favoriteTeams});
+    let insertResults = await db.dbQuery("INSERT INTO `heroku_7cae9308a1e2a42`.user SET ?", {Email: email, Password: hashedPassword, FavoriteTeams: favoriteTeams});
     if (insertResults) {
         res.render('register', {
             message: true,
@@ -108,10 +108,10 @@ exports.editProfile = async (req, res) => {
         const address = '{"street": "' + street + '", "unitNumber": "' + unitNumber + '", "city": "' + city + '", "zip": "' + zip + '", "country": "' + country + '"}';
         const favoriteTeams = '{"TeamName":"' + favoriteTeam + '"}';
     
-        let usernameResults = await db.dbQuery("SELECT username FROM `heroku_ae5ca559b978129`.user WHERE Username = ?", [username], (error, results) => {});
+        let usernameResults = await db.dbQuery("SELECT username FROM `heroku_7cae9308a1e2a42`.user WHERE Username = ?", [username], (error, results) => {});
     
         //UPDATE USER IN DATABASE
-        let updateUser = await db.dbQuery("UPDATE `heroku_ae5ca559b978129`.user SET ? WHERE Email = '" + email + "'", {FirstName: firstName, LastName: lastName, Email: email, FavoriteTeams: favoriteTeams});
+        let updateUser = await db.dbQuery("UPDATE `heroku_7cae9308a1e2a42`.user SET ? WHERE Email = '" + email + "'", {FirstName: firstName, LastName: lastName, Email: email, FavoriteTeams: favoriteTeams});
     }
     res.status(200).redirect("/auth/profile");
 }
@@ -122,7 +122,6 @@ exports.login = async (req, res) => {
         console.log("Inside authController.login");
         const googleToken = req.body.credential;
 
-        console.log(req.body);
 
         //Google Sign-in************
         if (googleToken) {
@@ -163,7 +162,7 @@ exports.login = async (req, res) => {
                      });
                 }
         
-                let loginResults = await db.dbQuery('SELECT * FROM `heroku_ae5ca559b978129`.user WHERE Email = ?', [email]);
+                let loginResults = await db.dbQuery('SELECT * FROM `heroku_7cae9308a1e2a42`.user WHERE Email = ?', [email]);
                 //Check Failed login due to incorrect info
                 if (!loginResults || !(await bcrypt.compare(password, loginResults[0].Password))) {
                     console.log("USERNAME PASSWORD CHECK FAILED");
@@ -232,7 +231,7 @@ exports.isLoggedIn = async (req, res, next) => {
                 //console.log(decoded);
     
                 // 2) Check if user still exists in database
-                let user = await db.dbQuery("SELECT * FROM `heroku_ae5ca559b978129`.user WHERE idUser = ?", [decoded.id]);
+                let user = await db.dbQuery("SELECT * FROM `heroku_7cae9308a1e2a42`.user WHERE idUser = ?", [decoded.id]);
     
                 // 3) If databse didn't return a user, exit out of function
                 if (!user) {
