@@ -43,15 +43,10 @@ const cleanResults = (colorMain, colorSecondary) => {
         resultsShowingToDelete.remove();
     }
 
-    //Remove current .news-card group of results from the DOM
-    const newsCardsToDelete = document.querySelectorAll('.news-card');
-    newsCardsToDelete.forEach(newsCard => {
-        newsCard.remove();
-    });
 
     //Set button colors back to default home screen colors
     slideWheelButtons.forEach(item => {
-        item.style.backgroundColor = "white";
+        item.style.backgroundColor = "lightgrey";
         item.style.color = "black";
         item.style.borderStyle = "solid";
         item.style.borderColor = "black";
@@ -59,7 +54,7 @@ const cleanResults = (colorMain, colorSecondary) => {
     });
 
     searchButtons.forEach(item => {
-        item.style.backgroundColor = "white";
+        item.style.backgroundColor = "lightgrey";
         item.style.color = "black";
         item.style.borderStyle = "solid";
         item.style.borderColor = "black";
