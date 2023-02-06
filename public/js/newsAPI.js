@@ -4,6 +4,7 @@ const articleObject = [];
 const articleLimit = 100;
 const buttonsToDisable = document.querySelectorAll('.team-logo');
 const searchButtons = document.querySelectorAll('.searchButtons');
+const slideWheelButtons = document.querySelectorAll('.slide-wheel-buttons');
 
 //used to check if base endpoint should be used
 var searchAll = false;
@@ -210,15 +211,28 @@ const makeTeamNameCapitalized = teamName => {
 
 //COLORIZE buttons
 const colorizeButtons = (color1, color2) => {
-    //grab ALL/AFC/NFC buttons
+
     var colorMain = "#" + color1 ;
     var colorSecondary = "#" + color2;
+
+    //grab ALL/AFC/NFC buttons
     searchButtons.forEach(item => {
         item.style.backgroundColor = colorSecondary;
         item.style.color = colorMain;
         item.style.borderStyle = "solid"
         item.style.borderColor = colorMain;
+        item.style.boxShadow = `0px 5px 10px ${colorSecondary}`;
     });
+
+    //grab next/previous slideWheel buttons
+    slideWheelButtons.forEach(item => {
+        item.style.backgroundColor = colorSecondary;
+        item.style.color = colorMain;
+        item.style.borderStyle = "solid";
+        item.style.borderColor = colorMain;
+        item.style.boxShadow = `0px 5px 10px ${colorSecondary}`;
+    });
+    
 
 }
 

@@ -189,50 +189,40 @@ if (user) {
 //add nfl teams to #teamSlideWheel div
 nflTeamsArray.forEach(item => {
     item.teams.forEach(team => {
-    //console.log(item.division);
+        //console.log(item.division);
 
-    //team div
-    var teamDiv = document.createElement('div');
-    teamDiv.setAttribute('class', 'team');
+        //team div
+        var teamDiv = document.createElement('div');
+        teamDiv.setAttribute('class', 'team');
 
-    //team name <p>
-    var teamLogo = document.createElement('img');
-    teamLogo.setAttribute('src', team.logo);
-    teamLogo.setAttribute('class', 'team-logo');
-    teamLogo.setAttribute('onclick', `handleSelectTeam( "${item.division.toString()}", "${team.name.toString()}", "${team.colorCodes[0]}", "${team.colorCodes[1]}" )`);
-    teamDiv.appendChild(teamLogo);
+        //team name <p>
+        var teamLogo = document.createElement('img');
+        teamLogo.setAttribute('src', team.logo);
+        teamLogo.setAttribute('class', 'team-logo');
+        teamLogo.setAttribute('onclick', `handleSelectTeam( "${item.division.toString()}", "${team.name.toString()}", "${team.colorCodes[0]}", "${team.colorCodes[1]}" )`);
+        teamDiv.appendChild(teamLogo);
 
-    //console.log("Division: " + item.division + ", Name: " + team.name + ", Color1: " + team.colorCodes[0] + ", Color2: " + team.colorCodes[1]);
+        //console.log("Division: " + item.division + ", Name: " + team.name + ", Color1: " + team.colorCodes[0] + ", Color2: " + team.colorCodes[1]);
 
-    wheelDiv.appendChild(teamDiv);
+        wheelDiv.appendChild(teamDiv);
     });
 });
 
 //Add next/prev buttons for teamWheel
 const buttonDiv = document.createElement('div');
 const lineBreak = document.createElement('br');
-const nextButton = document.createElement('button');
-const prevButton = document.createElement('button');
 const allNewsButton = document.createElement('button');
 const afcNewsButton = document.createElement('button');
 const nfcNewsButton = document.createElement('button');
-buttonDiv.setAttribute('id', 'btns-slide-wheel');
-nextButton.setAttribute('class', 'btn btn-next');
-prevButton.setAttribute('class', 'btn btn-prev');
 allNewsButton.setAttribute('class', 'btn-all-news');
 afcNewsButton.setAttribute('class', 'btn-all-news');
 nfcNewsButton.setAttribute('class', 'btn-all-news');
-nextButton.innerHTML = ">";
-prevButton.innerHTML = "<";
 allNewsButton.innerHTML = "Search All NFL News";
 afcNewsButton.innerHTML = "AFC News";
 nfcNewsButton.innerHTML = "NFC News";
 
-buttonDiv.appendChild(prevButton);
-buttonDiv.appendChild(nextButton);
 
 slideWrapper.appendChild(wheelDiv);
-slideWrapper.appendChild(buttonDiv);
 
 
 
@@ -245,11 +235,14 @@ const nextTeam = document.querySelector(".btn-next");
 const prevTeam = document.querySelector(".btn-prev");
 
 
+
 //Add functionality to next/prev buttons
 nextTeam.addEventListener('click', () => {
     const slideAmount = teams.clientWidth * 3;
     wheelDiv.scrollLeft += slideAmount;
 });
+
+
 
 nextTeam.addEventListener('wheel', (event) => {
     const slideAmount = teams.clientWidth * 3;

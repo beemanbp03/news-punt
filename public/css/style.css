@@ -5,6 +5,12 @@ body {
     font-size: 90%;
 }
 
+button {
+    outline: none;
+    border: none;
+    margin-top: 0.5em;
+}
+
 #btns-slide-wheel {
     display: flex;
     flex-direction: row;
@@ -32,6 +38,8 @@ body {
     height: 5em;
     border-radius: 2em;
     margin-top: 1em;
+    border: none;
+    box-shadow: 0px 5px 10px lightgrey;
 }
 
 /* container of .team */
@@ -55,6 +63,10 @@ body {
     font-size: 2em;
 }
 
+#slideWrapper button {
+    height: 5em;
+}
+
 #select-team select {
     font-size: 1em;
 }
@@ -66,7 +78,7 @@ body {
     color: black;
 }
 
-/* container of .news-card */
+/***************** container of .news-card ******************/
 #news-container {
     display: flex;
     flex-direction: row;
@@ -114,15 +126,16 @@ body {
 }
 
 .btn {
-    width: 6em;
+    width: 50%;
     height: 3em;
 }
+
 
 .team-logo {
     width: 100px;
     height: 100px;
 }
-
+/******************************************************************************************/
 .loader {
     border: 16px solid #f3f3f3; /* Light grey */
     border-top: 16px solid #3498db; /* Blue */
@@ -192,8 +205,25 @@ input[type="text"], input[type="password"] {
     height: 2.5em;
 }
 
-.nav-container {
-    width: 100%;
+nav ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+}
+
+nav ul li {
+    border-radius: 1em;
+    padding: 1em;
+    margin: 0.25em;
+    text-align: center;
+}
+
+nav ul li a {
+    text-decoration: none;
+    font-size: 25px;
 }
 
 .g_signin_container {
@@ -242,10 +272,47 @@ input[type="text"], input[type="password"] {
         height: 5em;
         border-radius: 2em;
         transition: all .2s ease-in;
+        
     }
 
     .searchButtons:hover {
         transform: scale(1.15);
+    }
+
+    .btn {
+        width: 30%;
+        margin-right: 3em;
+        margin-left: 3em;
+        border-radius: 2em;
+        transition: all .2s ease-in;
+        box-shadow: 0px 5px 10px lightgrey;
+        font-size: 40px;
+    }
+
+    .btn:hover {
+        transform: scale(1.15);
+    }
+
+    nav ul {
+        list-style: none;
+        list-style-type: none;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        color: green;
+    }
+
+    nav ul li {
+        outline: none;
+    }
+    
+    nav ul li a {
+        margin: 2em;
+        text-decoration: none;
+    }
+
+    #slideWrapper button {
+        height: 2em;
     }
 }
 
