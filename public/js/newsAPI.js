@@ -43,6 +43,11 @@ const cleanResults = (colorMain, colorSecondary) => {
         resultsShowingToDelete.remove();
     }
 
+    //Remove current .news-card group of results from the DOM
+    const newsCardsToDelete = document.querySelectorAll('.news-card');
+    newsCardsToDelete.forEach(newsCard => {
+        newsCard.remove();
+    });
 
     //Set button colors back to default home screen colors
     slideWheelButtons.forEach(item => {
