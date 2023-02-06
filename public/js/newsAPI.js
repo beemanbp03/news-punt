@@ -17,11 +17,13 @@ var searchAll = false;
     through the getNewsResults function
 */
 const handleSelectTeam = (division, teamName, color1, color2) => {
+    var colorMain = "#" + color1 ;
+    var colorSecondary = "#" + color2;
     searchAll = false;
     //console.log("Running handleSelectTeam method...");
-    cleanResults();
+    cleanResults(colorMain, colorSecondary);
     getNewsResults(division, teamName, color1, color2);
-    colorizeButtons(color1, color2);
+    colorizeButtons(colorMain, colorSecondary);
 }
 
 /*  
@@ -30,7 +32,7 @@ const handleSelectTeam = (division, teamName, color1, color2) => {
     this function removes the existing object in the articleObject array,
     grabs the div containing all results, then removes it if it exists
 */
-const cleanResults = () => {
+const cleanResults = (colorMain, colorSecondary) => {
     //Clean the articleObject array
 
     articleObject.length = 0;
@@ -45,6 +47,23 @@ const cleanResults = () => {
     const newsCardsToDelete = document.querySelectorAll('.news-card');
     newsCardsToDelete.forEach(newsCard => {
         newsCard.remove();
+    });
+
+    //Set button colors back to default home screen colors
+    slideWheelButtons.forEach(item => {
+        item.style.backgroundColor = "white";
+        item.style.color = "black";
+        item.style.borderStyle = "solid";
+        item.style.borderColor = "black";
+        item.style.boxShadow = "none";
+    });
+
+    searchButtons.forEach(item => {
+        item.style.backgroundColor = "white";
+        item.style.color = "black";
+        item.style.borderStyle = "solid";
+        item.style.borderColor = "black";
+        item.style.boxShadow = `0px 5px 10px lightgrey`;
     });
 }
 
@@ -210,10 +229,7 @@ const makeTeamNameCapitalized = teamName => {
 }
 
 //COLORIZE buttons
-const colorizeButtons = (color1, color2) => {
-
-    var colorMain = "#" + color1 ;
-    var colorSecondary = "#" + color2;
+const colorizeButtons = (colorMain, colorSecondary) => {
 
     //grab ALL/AFC/NFC buttons
     searchButtons.forEach(item => {
@@ -251,13 +267,6 @@ searchButtons.forEach(item => {
         main.style.backgroundColor = "#F7F7F7";
     
         searchAll = true
-    
-        searchButtons.forEach(item => {
-            item.style.backgroundColor = "#F7F7F7";
-            item.style.color = "black";
-            item.style.borderColor = "black";
-            item.style.borderStyle = "solid";
-        });
     
         cleanResults();
         if (item.id == "searchAll") {
