@@ -51,18 +51,16 @@ const cleanResults = (colorMain, colorSecondary) => {
 
     //Set button colors back to default home screen colors
     slideWheelButtons.forEach(item => {
-        item.style.backgroundColor = "lightgrey";
+        item.style.backgroundColor = "#F7F7F7";
         item.style.color = "black";
-        item.style.borderStyle = "solid";
-        item.style.borderColor = "black";
-        item.style.boxShadow = "none";
+        item.style.border = "none";
+        item.style.boxShadow = "0px 5px 10px lightgrey";
     });
 
     searchButtons.forEach(item => {
-        item.style.backgroundColor = "lightgrey";
+        item.style.backgroundColor = "#F7F7F7";
         item.style.color = "black";
-        item.style.borderStyle = "solid";
-        item.style.borderColor = "black";
+        item.style.border = "none";
         item.style.boxShadow = `0px 5px 10px lightgrey`;
     });
 }
