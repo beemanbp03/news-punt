@@ -21,12 +21,9 @@ NFL fans need a platform that connects them to their favorite NFL teams through 
 ## APIs Used
 - [NFL Football API (Custom)](https://dashboard.heroku.com/apps/nfl-football-api)
 - [Google Sign In (3rd party)](https://developers.google.com/identity/sign-in/web/sign-in)
-- [Facebook Sign In (3rd party)](https://developers.facebook.com/docs/facebook-login/)
-- [Amazon Sign In (3rd party)](https://developer.amazon.com/docs/login-with-amazon/web-docs.html?)
-- [Apple Sign In (3rd party)](https://developer.apple.com/documentation/sign_in_with_apple/sign_in_with_apple_rest_api)
 
 ## Technology Used
-- Front-End Framework: React
+- Node.js
 - Database Language: MySQL
 - Mock-Up Platform: Figma
 - Wireframe Platform: draw.io
