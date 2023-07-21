@@ -5,8 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "mocha test/init.test.js",
-    "start": "nodemon app.js",
-    "build": "npm run build"
+    "start": "nodemon app.js"
   },
   "repository": {
     "type": "git",
